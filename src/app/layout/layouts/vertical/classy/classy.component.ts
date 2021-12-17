@@ -7,6 +7,8 @@ import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { User } from 'app/core/user/user.types';
 import { UserService } from 'app/core/user/user.service';
+import { DataService } from 'app/data.service';
+import { collectExternalReferences } from '@angular/compiler';
 
 @Component({
     selector     : 'classy-layout',
@@ -26,6 +28,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     constructor(
         private _activatedRoute: ActivatedRoute,
         private _router: Router,
+        private _dataService: DataService,
         private _navigationService: NavigationService,
         private _userService: UserService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
@@ -49,26 +52,36 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
-
+    
+    // -- I AM HERE -- //
+    
     /**
      * On init
      */
+    
     ngOnInit(): void
     {
-        // Subscribe to navigation data
-        this._navigationService.navigation$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((navigation: Navigation) => {
-                this.navigation = navigation;
-            });
 
-        // Subscribe to the user service
-        this._userService.user$
-            .pipe((takeUntil(this._unsubscribeAll)))
-            .subscribe((user: User) => {
-                this.user = user;
-            });
+        this._dataService.getVerticalMenu()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((data: Navigation)=> {             
+                this.navigation=data
+        })  
 
+        this._dataService.getUser()
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((user: User)=> {             
+                this.user=user
+        })  
+
+
+//        // Subscribe to the user service
+//        this._userService.user$
+//            .pipe((takeUntil(this._unsubscribeAll)))
+//            .subscribe((user: User) => {
+//                this.user = user;
+//            });
+//
         // Subscribe to media changes
         this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))

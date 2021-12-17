@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ApexOptions } from 'ng-apexcharts';
 import { ProjectService } from 'app/modules/admin/dashboards/project/project.service';
@@ -25,12 +25,9 @@ export class ProjectComponent implements OnInit, OnDestroy
     /**
      * Constructor
      */
-    constructor(
-        private _projectService: ProjectService,
-        private _router: Router
-    )
-    {
-    }
+
+     constructor(private activeRoute: ActivatedRoute, private _router: Router) { 
+     }
 
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
@@ -40,19 +37,13 @@ export class ProjectComponent implements OnInit, OnDestroy
      * On init
      */
     ngOnInit(): void
-    {
-        // Get the data
-        this._projectService.data$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((data) => {
-
-                // Store the data
-                this.data = data;
-
-                // Prepare the chart data
-                this._prepareChartData();
-            });
-
+    {      
+            this.activeRoute.data.subscribe(({ 
+              data })=> { 
+              this.data=data;
+              this._prepareChartData();
+            })   
+    
         // Attach SVG fill fixer to all ApexCharts
         window['Apex'] = {
             chart: {

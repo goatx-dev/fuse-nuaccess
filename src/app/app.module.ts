@@ -12,6 +12,10 @@ import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
+import { NgxTablePaginationModule } from 'ngx-table-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
+import { HashLocationStrategy, LocationStrategy } from '@angular/common'
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -37,10 +41,13 @@ const routerConfig: ExtraOptions = {
 
         // Layout module of your application
         LayoutModule,
+        NgxTablePaginationModule,
+        Ng2SearchPipeModule,
 
         // 3rd party modules that require global configuration via forRoot
         MarkdownModule.forRoot({})
     ],
+    providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
     bootstrap   : [
         AppComponent
     ]

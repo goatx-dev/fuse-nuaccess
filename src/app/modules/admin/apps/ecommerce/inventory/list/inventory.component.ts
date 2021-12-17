@@ -56,6 +56,8 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     tagsEditMode: boolean = false;
     vendors: InventoryVendor[];
     private _unsubscribeAll: Subject<any> = new Subject<any>();
+    p: any;
+    term: any;
 
     /**
      * Constructor
@@ -79,6 +81,7 @@ export class InventoryListComponent implements OnInit, AfterViewInit, OnDestroy
     ngOnInit(): void
     {
         // Create the selected product form
+        this.term="";
         this.selectedProductForm = this._formBuilder.group({
             id               : [''],
             category         : [''],
