@@ -81,10 +81,11 @@ export class DataService {
     this.getLocalStorage()
     const data = {
       "q" : "vertical-menu",
+      "uid": this.uid,
       "role": this.role
     }
 
-  this.t= this.http.post("https://quadm.tech/data/t.php", data);
+  this.t= this.http.post("https://quadm.tech/data/k.php", data);
   return this.t;
 
   }
@@ -98,6 +99,19 @@ export class DataService {
     }
 
   this.t= this.http.post("https://quadm.tech/data/u.php", data);
+  return this.t;
+
+  }
+
+  
+  getEnroll(token: any) {
+    this.getLocalStorage()
+    const data = {
+      "q" : "enroll",
+      "token": token
+    }
+
+  this.t= this.http.post("https://quadm.tech/data/enroll.php", data);
   return this.t;
 
   }

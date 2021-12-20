@@ -51,6 +51,35 @@ export class AuthSignInComponent implements OnInit
             password  : ['', Validators.required],
             rememberMe: ['']
         });
+
+       if (localStorage.getItem('uid')!==undefined) {
+        if (localStorage.getItem('role')=="sadmin") { 
+            this._router.navigateByUrl('/sadmin'); 
+            location.replace('/#/sadmin');
+          }
+        if (localStorage.getItem('role')=="badmin") { 
+            this._router.navigateByUrl('/badmin'); 
+            location.replace('/#/badmin');
+          }
+        if (localStorage.getItem('role')=="broker") { 
+            this._router.navigateByUrl('/badmin'); 
+            location.replace('/#/badmin');
+          }
+        if (localStorage.getItem('role')=="eadmin") { 
+            this._router.navigateByUrl('/eadmin'); 
+            location.replace('/#/eadmin');
+          }
+        if (localStorage.getItem('role')=="employee") { 
+            this._router.navigate(['/dashboard']) 
+            location.replace('/#/dashboard');
+          }
+        if (localStorage.getItem('role')=="user") { 
+            this._router.navigate(['/sadmin']) 
+            location.replace('/#/sadmin');
+          }
+       }
+ 
+
     }
 
     // -----------------------------------------------------------------------------------------------------
@@ -131,14 +160,29 @@ export class AuthSignInComponent implements OnInit
                   localStorage.setItem('role',data.role)
                   this.signIn()
                   if (data.role=="sadmin") { 
-                      this._router.navigateByUrl('/dashboards/project/1'); 
-                      location.replace('/dashboards/projects');
+                      this._router.navigateByUrl('/sadmin'); 
+                      location.replace('/#/sadmin');
                     }
-                  if (data.role=="badmin") { this._router.navigateByUrl('/dashboards/project'); }
-                  if (data.role=="broker") { this._router.navigateByUrl('/dashboards/project'); }
-                  if (data.role=="eadmin") { this._router.navigateByUrl('/dashboards/project'); }
-                  if (data.role=="employee") { this._router.navigate(['/dashboards/project']) }
-                  if (data.role=="user") { this._router.navigate(['/dashboards/profile']) }
+                  if (data.role=="badmin") { 
+                      this._router.navigateByUrl('/badmin'); 
+                      location.replace('/#/badmin');
+                    }
+                  if (data.role=="broker") { 
+                      this._router.navigateByUrl('/badmin'); 
+                      location.replace('/#/badmin');
+                    }
+                  if (data.role=="eadmin") { 
+                      this._router.navigateByUrl('/eadmin'); 
+                      location.replace('/#/eadmin');
+                    }
+                  if (data.role=="employee") { 
+                      this._router.navigate(['/dashboard']) 
+                      location.replace('/#/dashboard');
+                    }
+                  if (data.role=="user") { 
+                      this._router.navigate(['/sadmin']) 
+                      location.replace('/#/sadmin');
+                    }
                 } else {      
                     this.signInForm.enable();
                     this.signInNgForm.resetForm();

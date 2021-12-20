@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuardOriginal implements CanActivate {
 
   isConnected: any;
   isLoggedIn: any;
@@ -18,10 +18,10 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
       if (localStorage.getItem('uid')===null) {
-          this.router.navigate(['/v'])  
+          this.router.navigate(['/sign-in'])  
       } else {
-        if (localStorage.getItem('uid')==""||localStorage.getItem('uid')!="0") {
-          this.router.navigate(['/v'])
+        if (localStorage.getItem('uid')==""||localStorage.getItem('uid')=="0") {
+          this.router.navigate(['/sign-in'])
         }
       }
     return true;

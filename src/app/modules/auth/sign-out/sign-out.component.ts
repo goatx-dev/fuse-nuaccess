@@ -38,7 +38,8 @@ export class AuthSignOutComponent implements OnInit, OnDestroy
     {
         // Sign out
         this._authService.signOut();
-
+            localStorage.removeItem('uid')
+            localStorage.removeItem('role')
         // Redirect after the countdown
         timer(1000, 1000)
             .pipe(
