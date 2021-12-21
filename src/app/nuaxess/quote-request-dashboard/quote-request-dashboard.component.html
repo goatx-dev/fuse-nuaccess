@@ -293,7 +293,7 @@
             <div class="card card-body">
                 <div class="row">
                     <div class="col-md-12 col-xl-2">
-                        <button  style="margin-left: 20px;" class="btn btn-danger" (click)="addEmployee()">Apply Multiplier</button>
+                        &nbsp;
                     </div>
                 </div>
             <div class="table-responsive">
@@ -313,6 +313,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <tr>
+                        <th><button  style="margin-left: 20px;" class="btn btn-primary" (click)="toggleMult()">Apply Multiplier</button></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr *ngIf="mult=='Y'">
+                        <th></th>
+                        <th></th>
+                        <th><input class="form-control" style="width:80px;" type="text" id="single_quote_rate" name="single_quote_rate"></th>
+                        <th></th>
+                        <th><input class="form-control" style="width:80px;" type="text"  id="spouse_quote_rate" name="spouse_quote_rate"></th>
+                        <th></th>
+                        <th><input class="form-control" style="width:80px;" type="text"  id="family_quote_rate" name="family_quote_rate"></th>
+                        <th></th>
+                        <td><button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-warning">Apply</button></td>
+                    </tr>
                         <tr *ngFor="let m of data.quotes">
                             <td>{{ m.plan_name }}</td>
                             <td>{{ m.plan_type }}</td>

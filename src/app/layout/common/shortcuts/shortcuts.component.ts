@@ -19,7 +19,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
     @ViewChild('shortcutsOrigin') private _shortcutsOrigin: MatButton;
     @ViewChild('shortcutsPanel') private _shortcutsPanel: TemplateRef<any>;
 
-    mode: 'view' | 'modify' | 'add' | 'edit' = 'view';
+    mode: 'view' | 'modify' | 'add' | 'edit' = 'add';
     shortcutForm: FormGroup;
     shortcuts: Shortcut[];
     private _overlayRef: OverlayRef;
@@ -51,10 +51,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
         this.shortcutForm = this._formBuilder.group({
             id         : [null],
             label      : ['', Validators.required],
-            description: [''],
-            icon       : ['', Validators.required],
-            link       : ['', Validators.required],
-            useRouter  : ['', Validators.required]
+            description: ['']
         });
 
         // Get the shortcuts
@@ -102,7 +99,7 @@ export class ShortcutsComponent implements OnInit, OnDestroy
         }
 
         // Make sure to start in 'view' mode
-        this.mode = 'view';
+        this.mode = 'add';
 
         // Create the overlay if it doesn't exist
         if ( !this._overlayRef )

@@ -93,21 +93,21 @@
             </div>
             <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
                 <div class="flex flex-col gt-xs:flex-row">
-                    <mat-form-field
+                <mat-form-field
+                    [ngClass]="formFieldHelpers"
+                    class="flex-auto gt-xs:pl-3">
+                    <mat-label>Full Name</mat-label>
+                    <input matInput id="full_name" name="full_name" [(ngModel)]="data.formData['full_name']">
+                    <mat-icon
+                        class="icon-size-5"
+                        matSuffix
+                        [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                </mat-form-field>
+                <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
-                        <mat-label>Organization name</mat-label>
-                        <input matInput id="org_name" name="org_name" [(ngModel)]="data.formData['org_name']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pl-3">
-                        <mat-label>Contact Full Name</mat-label>
-                        <input matInput id="contact_full_name" name="contact_full_name" [(ngModel)]="data.formData['contact_full_name']">
+                        <mat-label>Email</mat-label>
+                        <input matInput id="email" name="email" [(ngModel)]="data.formData['email']">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -118,172 +118,64 @@
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
-                        <mat-label>Contact Email</mat-label>
-                        <input matInput id="org_name" name="email" [(ngModel)]="data.formData['email']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pl-3">
-                        <mat-label>Contact Mobile Phone</mat-label>
+                        <mat-label>Mobile Phone</mat-label>
                         <input matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                     </mat-form-field>
-                </div>
-                <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
-                        <mat-label>Billing Contact</mat-label>
-                        <input matInput id="billing_contact_name" name="billing_contact_name" [(ngModel)]="data.formData['billing_contact_name']">
+                        <mat-label>Role</mat-label>
+                        <mat-select  id="role" name="role" [(ngModel)]="data.formData['role']">
+                            <mat-option value="sadmin">Super Admin</mat-option>
+                            <mat-option value="user">NuAxess User</mat-option>
+                            <mat-option value="badmin">Organization Admin</mat-option>
+                            <mat-option value="broker">Organization User</mat-option>
+                            <mat-option value="eadmin">Employer Admin</mat-option>
+                            <mat-option value="employee">Employee/Member</mat-option>
+                        </mat-select>
                         <mat-icon
                             class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pl-3">
-                        <mat-label>Billing Contact Phone</mat-label>
-                        <input matInput id="billing_contact_phone" name="billing_contact_phone" [(ngModel)]="data.formData['billing_contact_phone']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
                     </mat-form-field>
                 </div>
-                <div class="flex flex-col gt-xs:flex-row">
+                <div *ngIf="data.formData['role']=='badmin'||data.formData['role']=='broker'" class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
-                        <mat-label>Billing Contact Email</mat-label>
-                        <input matInput id="billing_contact_email" name="billing_contact_email" [(ngModel)]="data.formData['billing_contact_email']">
+                        <mat-label>Organization</mat-label>
+                        <mat-select  id="org_id" name="org_id" [(ngModel)]="data.formData['org_id']">
+                            <mat-option *ngFor="let m of data.select" value="{{ m.id }}">{{ m.org_name }}</mat-option>
+                        </mat-select>
                         <mat-icon
                             class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pl-3">
-                        <mat-label>Tech Contact Name</mat-label>
-                        <input matInput id="admin_contact_name" name="admin_contact_name" [(ngModel)]="data.formData['admin_contact_name']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
                     </mat-form-field>
                 </div>
-                <div class="flex flex-col gt-xs:flex-row">
+                <div *ngIf="data.formData['role']=='eadmin'||data.formData['role']=='employee'" class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
-                        <mat-label>Tech Contact Phone</mat-label>
-                        <input matInput id="admin_contact_phone" name="admin_contact_phone" [(ngModel)]="data.formData['admin_contact_phone']">
+                        <mat-label>Employer / Prospect</mat-label>
+                        <mat-select  id="company_id" name="company_id" [(ngModel)]="data.formData['company_id']">
+                            <mat-option *ngFor="let m of data.select2" value="{{ m.id }}">{{ m.company_name }}</mat-option>
+                        </mat-select>
                         <mat-icon
                             class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pl-3">
-                        <mat-label>Tech Contact Email</mat-label>
-                        <input matInput id="admin_contact_email" name="admin_contact_email" [(ngModel)]="data.formData['admin_contact_email']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="flex">
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="fuse-mat-textarea flex-auto">
-                        <mat-label>Address</mat-label>
-                        <textarea
-                            matInput
-                            [rows]="3"
-                            matTextareaAutosize
-                            id="address" name="adddress" [(ngModel)]="data.formData['address']"></textarea>
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
+                            matPrefix
                             [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
                     </mat-form-field>
                 </div>
-                <div class="flex flex-col gt-md:flex-row">
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-md:pr-3">
-                        <mat-label>City</mat-label>
-                        <input matInput  id="city" name="city" [(ngModel)]="data.formData['city']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-md:pl-3">
-                        <mat-label>State</mat-label>
-                        <input matInput  id="state" name="state" [(ngModel)]="data.formData['state']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="flex">
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto">
-                        <mat-label>Postal code</mat-label>
-                        <input
-                            matInput
-                            maxlength="15"
-                            #postalCode
-                            id="zip" name="zip" [(ngModel)]="data.formData['zip']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:mail'"></mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="flex flex-col gt-md:flex-row">
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-md:pr-3">
-                        <mat-label>Website</mat-label>
-                        <input matInput  id="website" name="website" [(ngModel)]="data.formData['website']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                    </mat-form-field>
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="fuse-mat-textarea flex-auto">
-                        <mat-label>Notes</mat-label>
-                        <textarea
-                            matInput
-                            [rows]="3"
-                            matTextareaAutosize
-                            id="dsc" name="dsc" [(ngModel)]="data.formData['dsc']"></textarea>
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                    </mat-form-field>
+                <div *ngIf="error!=''" class="flex flex-col gt-xs:flex-row">
+                    <span style="color: red;">{{ error }}</span>
                 </div>
                 <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
-                    <button mat-button>
+                    <button mat-button [routerLink]="['/user-dashboard',data.formData.id]">
                         Cancel
                     </button>
                     <button

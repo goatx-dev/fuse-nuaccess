@@ -105,8 +105,13 @@
         <div class="col-xl-2">
             Hello
         </div>
-        <div class="col-md-12 col-xl-3">
+        <div class="col-md-12 col-xl-4">
             <div class="card card-body">            
+                <div class="row">
+                    <div class="col-12" style="margin-bottom: 20px;">
+                         <button mat-button [routerLink]="['/user-list',data.id]">Go Back</button>
+                     </div>
+                </div>
                 <div class="row">
                     <div class="col-12">
                         <button class="btn btn-primary" [routerLink]="['/edit-user',data.id]">Edit User</button>
@@ -164,12 +169,16 @@
                             <th>Notification Status:</th>
                             <td>{{ data.notification_status }}</td>
                         </tr>
+                        <tr>
+                            <th>Invite Url:</th>
+                            <td>https://myNuAxess.com/#/enroll/{{ data.invite_code }}</td>
+                        </tr>
                     </tbody>
                 </div>
             </div>
                                 </div>
         </div>
-        <div class="col-md-12 col-xl-7">
+        <div class="col-md-12 col-xl-6">
 <div class="card card-body">
             <div class="table-responsive">
                 <h2 class="h2" style="font-size: 24px;">Quotes</h2>

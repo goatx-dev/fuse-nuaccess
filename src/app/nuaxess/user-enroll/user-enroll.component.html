@@ -63,7 +63,8 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Email</mat-label>
-                        <input matInput id="email" name="email" [(ngModel)]="data.formData['email']">
+                        <input *ngIf="data.formData['id']!=''"  disabled matInput id="email" name="email" [(ngModel)]="data.formData['email']">
+                        <input *ngIf="data.formData['id']==''" matInput id="email" name="email" [(ngModel)]="data.formData['email']">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -75,7 +76,8 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Mobile Phone</mat-label>
-                        <input matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
+                        <input *ngIf="data.formData['id']!=''" disabled matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
+                        <input *ngIf="data.formData['id']==''" matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix

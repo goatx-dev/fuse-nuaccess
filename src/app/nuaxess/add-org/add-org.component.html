@@ -86,11 +86,8 @@
     </div>
 
     <!-- Main -->
-    <div class="flex-auto p-6 sm:p-10">
-        <div class="max-w-3xl">
-            <div class="prose prose-sm max-w-3xl">
-                <h2>Please fill out form to Add Organization</h2>
-            </div>
+    <div class="row" style="margin-left: 50px;">
+        <div class="col-xl-5">
             <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
                 <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
@@ -179,18 +176,22 @@
                             matSuffix
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                     </mat-form-field>
-                </div>
-                <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pr-3">
-                        <mat-label>Tech Contact Phone</mat-label>
-                        <input matInput id="admin_contact_phone" name="admin_contact_phone" [(ngModel)]="data.formData['admin_contact_phone']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>
+                    [ngClass]="formFieldHelpers"
+                    class="flex-auto gt-xs:pr-3">
+                    <mat-label>Tech Contact Phone</mat-label>
+                    <input matInput id="admin_contact_phone" name="admin_contact_phone" [(ngModel)]="data.formData['admin_contact_phone']">
+                    <mat-icon
+                        class="icon-size-5"
+                        matSuffix
+                        [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                </mat-form-field>
+                </div>
+            </form>
+</div>
+<div class="col-xl-5">
+            <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+                <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
@@ -294,10 +295,5 @@
                     </button>
                 </div>
             </form>
-
-
-        </div>
-
-    </div>
-
+</div>
 </div>

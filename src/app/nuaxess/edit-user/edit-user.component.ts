@@ -27,6 +27,7 @@ export class EditUserComponent implements OnInit {
     currentYear: any;
     email: any;
     user: any;
+    error: any;
 
     /**
      * Constructor

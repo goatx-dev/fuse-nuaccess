@@ -126,12 +126,12 @@
                         <mat-tab-group
                             class="sm:px-2"
                             [animationDuration]="'0'">
-                            <mat-tab label="Home">
+                            <mat-tab label="Welcome to MyNuAxess">
                                 <ng-template matTabContent>
                                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 w-full min-w-0">
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Quotes Waiting</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Prospects</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -147,20 +147,19 @@
                                                     </mat-menu>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col items-center mt-2">
-                                                
-                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">{{ data.quote_count }}</div>
-                                                <div class="text-lg font-medium text-blue-600 dark:text-blue-500">Quotes Pending</div>
+                                            <div class="flex flex-col items-center mt-2">                                                
+                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-blue-500">{{ data.prospect_count }}</div>
+                                                <div class="text-lg font-medium text-blue-600 dark:text-blue-500">New Prospects</div>
                                                 <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
                                                     <div class="text-md font-medium truncate">New:</div>
-                                                    <div class="ml-1.5 text-lg font-semibold">{{ data.quote_count }}</div>
+                                                    <div class="ml-1.5 text-lg font-semibold">{{ data.new_prospect_count }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Overdue -->
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">In Enrollment</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Quote Requests</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -177,18 +176,18 @@
                                                 </div>
                                             </div>
                                             <div class="flex flex-col items-center mt-2">
-                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">17</div>
-                                                <div class="text-lg font-medium text-red-600 dark:text-red-500">Completed</div>
+                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-red-500">{{ data.request_count }}</div>
+                                                <div class="text-lg font-medium text-red-600 dark:text-red-500">New Requests</div>
                                                 <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
                                                     <div class="text-md font-medium truncate">From yesterday:</div>
-                                                    <div class="ml-1.5 text-lg font-semibold">9</div>
+                                                    <div class="ml-1.5 text-lg font-semibold">{{ data.new_request_count }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Issues -->
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Issues</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">In Enrollment</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -205,18 +204,18 @@
                                                 </div>
                                             </div>
                                             <div class="flex flex-col items-center mt-2">
-                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">24</div>
-                                                <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Open</div>
+                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">{{ data.in_enrollment_count }}</div>
+                                                <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Enrolling</div>
                                                 <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                                                    <div class="text-md font-medium truncate">Closed today:</div>
-                                                    <div class="ml-1.5 text-lg font-semibold">19</div>
+                                                    <div class="text-md font-medium truncate">Members:</div>
+                                                    <div class="ml-1.5 text-lg font-semibold">{{ data.in_enrollment_members }}</div>
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- Features -->
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Features</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Enrolled</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -232,12 +231,12 @@
                                                     </mat-menu>
                                                 </div>
                                             </div>
-                                            <div class="flex flex-col items-center mt-2">
-                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">38</div>
-                                                <div class="text-lg font-medium text-green-600 dark:text-green-500">Proposals</div>
+                                            <div class="flex flex-col items-center mt-2"> 
+                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-green-500">{{ data.enrolled_count }}</div>
+                                                <div class="text-lg font-medium text-green-600 dark:text-green-500">Members</div>
                                                 <div class="flex items-baseline justify-center w-full mt-5 text-secondary">
-                                                    <div class="text-md font-medium truncate">Implemented:</div>
-                                                    <div class="ml-1.5 text-lg font-semibold">16</div>
+                                                    <div class="text-md font-medium truncate">Members Enrolled:</div>
+                                                    <div class="ml-1.5 text-lg font-semibold">{{ data.enrolled_members }}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -249,7 +248,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 style="font-size: 24px; font-weight: bold;">notifications</h1>
+                                <h1 style="font-size: 24px; font-weight: bold;">Quotes & Enrollments</h1>
                             </div>
                             <div class="col-md-12">
                                 <div class="table-responsive">
@@ -259,27 +258,24 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
+                                                <th>ID</th>
                                                 <th>Date</th>
-                                                <th>From</th>
                                                 <th>Organization</th>
-                                                <th>Message</th>
+                                                <th>Company</th>
+                                                <th>Quote Name</th>
+                                                <th>Status</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>12/21/2021</td>
-                                                <td>John Smith</td>
-                                                <td>Really Big PEO</td>
-                                                <td>New Quote Request</td>
-                                                <td><button class="btn btn-primary">View</button></td>
-                                            </tr>
-                                            <tr *ngFor="let m of data.notifications | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
-                                                <td>{{ m.display_date }}</td>
-                                                <td>{{ m.display_from }}</td>
-                                                <td>{{ m.display_org }}</td>
-                                                <td>{{ m.message }}</td>
-                                                <td><button class="btn btn-primary">View</button></td>
+                                            <tr *ngFor="let m of data.quotes | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
+                                                <td>{{ m.id }}</td>
+                                                <td>{{ m.create_timestamp }}</td>
+                                                <td>{{ m.org_name }}</td>
+                                                <td>{{ m.company_name }}</td>
+                                                <td>{{ m.quote_name }}</td>
+                                                <td>{{ m.status }}</td>
+                                                <td><button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-primary">View</button></td>
                                             </tr>
                                         </tbody>
                                     </table>

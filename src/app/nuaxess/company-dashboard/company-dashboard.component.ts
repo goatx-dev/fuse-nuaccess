@@ -53,9 +53,9 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
           this.data=data;
           this.user=userdata;
           this.navigation=menudata
-          console.log(data)
+          console.log(this.data)
       }) 
-            
+            this.adding='N';
             this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({matchingAliases}) => {

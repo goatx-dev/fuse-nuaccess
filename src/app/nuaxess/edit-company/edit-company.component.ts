@@ -119,7 +119,7 @@ export class EditCompanyComponent implements OnInit {
 
   
     postForm() {
-        this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-edit-company", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
             this._router.navigate(['/company-dashboard',data.id])
           } else {     

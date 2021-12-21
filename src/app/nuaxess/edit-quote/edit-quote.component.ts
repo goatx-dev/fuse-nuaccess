@@ -119,9 +119,9 @@ export class EditQuoteComponent implements OnInit {
 
   
     postForm() {
-        this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-edit-quote", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
-            this._router.navigate(['/quote-dashboard',data.id])
+            this._router.navigate(['/quote-request-dashboard',data.id])
           } else {     
 //            this.error=data.error_message
           }

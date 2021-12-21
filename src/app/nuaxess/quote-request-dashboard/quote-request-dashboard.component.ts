@@ -28,6 +28,7 @@ export class QuoteRequestDashboardComponent implements OnInit, OnDestroy {
     email: any;
     user: any;
     adding: any;
+    mult: any;
 
     /**
      * Constructor
@@ -48,6 +49,7 @@ addEmployee() {
     ngOnInit(): void
     {      
 this.adding='N';
+this.mult='N';
 this._activatedRoute.data.subscribe(({ 
   data, menudata, userdata })=> { 
     this.data=data;
@@ -137,6 +139,13 @@ this._activatedRoute.data.subscribe(({
 
     }
 
+    toggleMult() {
+        if (this.mult=='Y') {
+            this.mult='N'
+        } else {
+            this.mult='Y'
+        }
+    }
     postForm() {
         this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
