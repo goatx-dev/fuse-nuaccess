@@ -88,7 +88,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <h1 style="font-size: 24px; font-weight: bold;">&nbsp; </h1>
+                <div style="margin-top: 20px !important;">
+                    <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/sadmin']"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                        <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                    </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Admin Dashboard</span></span></a>
+                </div>
             </div>
             <div class="col-md-12">
                 <div class="table-responsive">
@@ -104,6 +108,8 @@
                                 <th>Contact Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
+                                <th>Enrollment</th>
+                                <th>Accepted Quote</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -113,9 +119,11 @@
                                 <td>{{ m.id }}</td>
                                 <td>{{ m.company_name }}</td>
                                 <td>{{ m.org_name }}</td>
-                                <td>{{ m.contact_name }}</td>
-                                <td>{{ m.phone_mobile }}</td>
+                                <td>{{ m.first_name }} {{ m.last_name }}</td>
+                                <td>{{ m.contact_phone }}</td>
                                 <td>{{ m.email }}</td>
+                                <td>{{ m.enrollment_count }}</td>
+                                <td>{{ m.has_accepted_quote }}</td>
                                 <td>{{ m.status }}</td>
                                 <td><button [routerLink]="['/company-dashboard',m.id]" class="btn btn-primary">View</button></td>
                             </tr>

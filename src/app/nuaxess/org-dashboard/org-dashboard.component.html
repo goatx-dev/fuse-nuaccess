@@ -76,7 +76,7 @@
     </div>
 </div>
     <!-- Header -->
-    <div class="relative flex-0 py-8 px-4 sm:p-16 overflow-hidden bg-gray-800 dark" style="padding-bottom: 20px;">
+    <div class="relative flex-0 py-8 px-4 sm:p-16 overflow-hidden bg-gray-800 dark" style="padding-bottom: 20px !important; padding-top: 20px !important;">
         <!-- Background - @formatter:off -->
         <!-- Rings -->
         <svg class="absolute inset-0 pointer-events-none"
@@ -87,7 +87,7 @@
             </g>
         </svg>
         <!-- @formatter:on -->
-        <div class="z-10 relative flex flex-col items-center" style="margin-top: 40px;">
+        <div class="z-10 relative flex flex-col items-center" style="margin-top: 20px;">
             <h2 class="text-xl font-semibold">Organization Dashboard</h2>
             <div class="mt-1 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight text-center">
                 {{ data.org_name }}
@@ -100,10 +100,21 @@
 
     <!-- Main -->
 
-<div class="container-fluid p-5" style="margin-top: 30px;">
+<div class="container-fluid p-1" style="margin-top: 10px;">
     <div class="row">
         <div class="col-xl-2">
-            Hello
+
+        </div>
+        <div class="col-xl-7">
+            <div style="margin-top: 10px !important;">
+                <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/sadmin']"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                    <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Dashboard</span></span></a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-2">
         </div>
         <div class="col-md-12 col-xl-3">
             <div class="card card-body">            
@@ -233,40 +244,40 @@
                         </tr>
                     </thead>
                     <tbody>
-            <tr *ngFor="let m of data.quotes |  paginate: { currentPage: p , itemsPerPage: 25}">
+            <tr *ngFor="let m of data.users |  paginate: { currentPage: p , itemsPerPage: 25}">
                 <td>
-                    {{ m.quote_id }}
+                    {{ m.id }}
                 </td>
                 <td>
-                    {{ m.quote_name }}
+                    {{ m.full_name }}
                 </td>
                 <td>
-                    {{ m.date_expires }}
+                    {{ m.email }}
                 </td>
                 <td>
-                    {{ m.medical }}
+                    {{ m.phone }}
                 </td>
                 <td>
-                    {{ m.dental }}
+                    {{ m.user_name }}
                 </td>
                 <td>
-                    {{ m.vision }}
+                    {{ m.role }}
                 </td>
                 <td>
                     {{ m.status }}
                 </td>
                 <th>
-                    <button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
+                    <button [routerLink]="['/user-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
                 </th>
             </tr>
                     </tbody>
                 </table>
-                <button  [routerLink]="['/add-quote-request',data.id]" class="btn btn-primary" (click)="addEmployee()">Request Quote</button>
+                <button  [routerLink]="['/add-user']" class="btn btn-primary" (click)="addEmployee()">Add User</button>
             </div>
 </div>
-<div class="card card-body">
+<div class="card card-body" style="margin-top: 20px;">
     <div class="table-responsive">
-        <h2 class="h2" style="font-size: 24px;">Quotes</h2>
+        <h2 class="h2" style="font-size: 24px;">Prospects / Companies</h2>
         <table class="table table-responsive table-striped">
             <thead>
                 <tr>
@@ -274,19 +285,22 @@
                         ID
                     </th>
                     <th>
-                        Quote Name
+                        Company Name
                     </th>
                     <th>
-                        Exipres
+                        Contact
                     </th>
                     <th>
-                        Medical
+                        Email
                     </th>
                     <th>
-                        Dental
+                        Phone
                     </th>
                     <th>
-                        Vision
+                        Accepted
+                    </th>
+                    <th>
+                        Enrolled
                     </th>
                     <th>
                         Status
@@ -297,35 +311,37 @@
                 </tr>
             </thead>
             <tbody>
-    <tr *ngFor="let m of data.quotes |  paginate: { currentPage: p , itemsPerPage: 25}">
+    <tr *ngFor="let m of data.prospects">
         <td>
-            {{ m.quote_id }}
+            {{ m.id }}
         </td>
         <td>
-            {{ m.quote_name }}
+            {{ m.company_name }}
         </td>
         <td>
-            {{ m.date_expires }}
+            {{ m.first_name }} {{ m.last_name }}
         </td>
         <td>
-            {{ m.medical }}
+            {{ m.contact_email }}
         </td>
         <td>
-            {{ m.dental }}
+            {{ m.phone }}
         </td>
         <td>
-            {{ m.vision }}
+            {{ m.has_accepted_quote }}
+        </td>
+        <td>
+            {{ m.enrolled }}
         </td>
         <td>
             {{ m.status }}
         </td>
         <th>
-            <button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
+            <button [routerLink]="['/company-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
         </th>
     </tr>
             </tbody>
         </table>
-        <button  [routerLink]="['/add-quote-request',data.id]" class="btn btn-primary" (click)="addEmployee()">Request Quote</button>
     </div>
 </div>
         </div>

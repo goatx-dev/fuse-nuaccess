@@ -85,6 +85,17 @@ import { UserEnrollComponent } from './nuaxess/user-enroll/user-enroll.component
 import { BadminComponent } from './nuaxess/badmin/badmin.component';
 import { DashboardComponent } from './nuaxess/dashboard/dashboard.component';
 import { EadminComponent } from './nuaxess/eadmin/eadmin.component';
+import { ActivePlanDashboardComponent } from './nuaxess/active-plan-dashboard/active-plan-dashboard.component';
+import { EmployeeDashboardComponent } from './nuaxess/employee-dashboard/employee-dashboard.component';
+import { FuseCardComponent, FuseCardModule } from '@fuse/components/card';
+import { EmployeeIHQComponent } from './nuaxess/employee-ihq/employee-ihq.component';
+import { MemberInfoComponent } from './nuaxess/member-info/member-info.component';
+import { MemberFamilyComponent } from './nuaxess/member-family/member-family.component';
+import { MemberPlansComponent } from './nuaxess/member-plans/member-plans.component';
+import { MemberIHQComponent } from './nuaxess/member-ihq/member-ihq.component';
+import { MemberProfileComponent } from './nuaxess/member-profile/member-profile.component';
+import { MemberMedicationsComponent } from './nuaxess/member-medications/member-medications.component';
+import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insurance.component';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -127,7 +138,17 @@ const routerConfig: ExtraOptions = {
         UserEnrollComponent,
         BadminComponent,
         DashboardComponent,
-        EadminComponent
+        EadminComponent,
+        ActivePlanDashboardComponent,
+        EmployeeDashboardComponent,
+        EmployeeIHQComponent,
+        MemberInfoComponent,
+        MemberFamilyComponent,
+        MemberPlansComponent,
+        MemberIHQComponent,
+        MemberProfileComponent,
+        MemberMedicationsComponent,
+        MemberInsuranceComponent
     ],
     imports     : [
         BrowserModule,
@@ -139,6 +160,7 @@ const routerConfig: ExtraOptions = {
         FuseFullscreenModule,
         FuseLoadingBarModule,
         FuseNavigationModule,
+        FuseCardModule,
         LayoutModule,
         LanguagesModule,
         MatButtonModule,

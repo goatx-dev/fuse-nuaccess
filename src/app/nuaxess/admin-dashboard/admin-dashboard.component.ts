@@ -61,6 +61,12 @@ import { DataService } from 'app/data.service';
                 this.data=data;
                 this.navigation=menudata
                 this.user=userdata
+                if (this.data.user.role=="employee") {
+                    this._router.navigate(['/dashboard']);
+                }
+                if (this.data.user.role=="badmin") {
+                    this._router.navigate(['/badmin']);
+                }
               }) 
               
 

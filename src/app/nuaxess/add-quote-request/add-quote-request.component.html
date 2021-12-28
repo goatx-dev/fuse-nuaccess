@@ -86,8 +86,15 @@
     </div>
 
     <!-- Main -->
-    <div class="row" style="margin-left: 50px;">
+    <div class="row">
         <div class="col-xl-5">
+            <div class="col-xl-7">
+                <div style="margin-top: 10px !important; margin-left: 20px !important;">
+                    <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/company-dashboard',data.id]"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                        <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+                    </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Company Dashboard</span></span></a>
+                </div>
+            </div>
             <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
                 <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field

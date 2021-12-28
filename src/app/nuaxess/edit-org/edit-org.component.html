@@ -84,7 +84,18 @@
             </div>
         </div>
     </div>
-
+    <div class="col-xl-7">
+        <div *ngIf="data.params['id2']!=''" style="margin-top: 10px !important; margin-left: 20px !important;">
+            <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/org-list']"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Organization List</span></span></a>
+        </div>
+        <div  *ngIf="data.params['id2']==''" style="margin-top: 10px !important; margin-left: 20px !important;">
+            <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/org-dashboard',data.formData['id']]"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Dashboard</span></span></a>
+        </div>
+    </div>
     <!-- Main -->
     <div class="flex-auto p-6 sm:p-10">
         <div class="max-w-3xl">

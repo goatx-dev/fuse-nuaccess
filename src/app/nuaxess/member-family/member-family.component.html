@@ -1,0 +1,291 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+<!-- Navigation -->
+<fuse-vertical-navigation
+    class="dark bg-gray-900 print:hidden"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'"
+    [navigation]="navigation.default"
+    [opened]="!isScreenSmall">
+    <!-- Navigation header hook -->
+    <ng-container fuseVerticalNavigationContentHeader>
+        <div class="flex items-center w-full p-4 pl-6">
+            <!-- Logo -->
+            <div class="flex items-center justify-center">
+                <img
+                    class="w-8"
+                    src="assets/images/logo/logo.svg">
+            </div>
+            <!-- Components -->
+            <div class="flex items-center ml-auto">
+                <notifications></notifications>
+                <user [showAvatar]="false"></user>
+            </div>
+        </div>
+        <!-- User -->
+        <div class="flex flex-col items-center w-full p-4">
+            <div class="relative w-24 h-24">
+                <img
+                    class="w-full h-full rounded-full"
+                    *ngIf="user.avatar"
+                    [src]="user.avatar"
+                    alt="User avatar">
+                <mat-icon
+                    class="icon-size-24"
+                    *ngIf="!user.avatar"
+                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+            </div>
+            <div class="flex flex-col items-center justify-center w-full mt-6">
+                <div class="w-full whitespace-nowrap overflow-ellipsis overflow-hidden text-center leading-normal font-medium">
+                    {{user.name}}
+                </div>
+                <div class="w-full mt-0.5 whitespace-nowrap overflow-ellipsis overflow-hidden text-center text-md leading-normal font-medium text-secondary">
+                    {{user.email}}
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <!-- Navigation footer hook -->
+    <ng-container fuseVerticalNavigationContentFooter>
+        <div class="flex flex-0 items-center justify-center h-16 pr-6 pl-2 mt-2 mb-4 opacity-12">
+            <img
+                class="max-w-36"
+                src="assets/images/logo/logo-text-on-dark.svg">
+        </div>
+    </ng-container>
+</fuse-vertical-navigation>
+
+<div class="flex flex-col flex-auto min-w-0">
+<!--- THIS IS MOVED INSIDE THE MAIN SECTION AFTER THE FIRST LINE -->
+<div class="relative flex flex-0 items-center w-full h-16 px-4 md:px-6 z-49 shadow dark:shadow-none dark:border-b bg-card dark:bg-transparent print:hidden">
+    <!-- Navigation toggle button -->
+    <button
+        mat-icon-button
+        (click)="toggleNavigation('mainNavigation')">
+        <mat-icon [svgIcon]="'heroicons_outline:menu'"></mat-icon>
+    </button>
+    <!-- Components -->
+    <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2">
+        <languages></languages>
+        <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
+        <search [appearance]="'bar'"></search>
+        <shortcuts></shortcuts>
+        <messages></messages>
+    </div>
+</div>
+<!--- THIS IS MOVED INSIDE THE MAIN SECTION AFTER THE FIRST LINE -->
+    <!-- Header -->
+    <div class="col-xl-7">
+        <div style="margin-top: 10px !important; margin-left: 20px !important;">
+            <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/dashboard']"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
+            </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Dashboard</span></span></a>
+        </div>
+    </div>
+    <!-- Main -->
+    <div class="row p-3">
+<!--    <div class="flex-auto p-6 sm:p-10"> -->
+    <div class="col-xl-6">
+<!--       <div class="max-w-3xl"> -->
+            <div class="prose prose-sm max-w-3xl">
+                <h2>Please Confirm and Update your Family / Dependent Information</h2>
+            </div>
+            <div *ngFor="let m of data.family" class="card card-body"  style="margin-top:20px;">
+                <div class="table-responsive">
+                    <h2 class="h2" style="font-size: 24px;">{{ m.first_name }} {{ m.middle_name}} {{ m.last_name }} {{ m.suffix }}</h2>
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Relationship
+                                </th>
+                                <th>
+                                    {{ m.member_type }}
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    Gender
+                                </th>
+                                <td>
+                                    {{ m.gender }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Date of Birth
+                                </th>
+                                <td>
+                                    {{ m.date_of_birth }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Social Security Number
+                                </th>
+                                <td>
+                                    {{ m.social_security_number }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Height
+                                </th>
+                                <td>
+                                    {{ m.height }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Weight
+                                </th>
+                                <td>
+                                    {{ m.weight }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <button (click)="edit(m.id,m.first_name,m.middle_name,m.last_name,m.suffix,m.member_type,m.gender,m.date_of_birth,m.social_security_number,m.height,m.weight)" class="btn btn-primary">View/Edit</button>
+                                </td>     
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                 </div>
+            </div>
+            <button  *ngIf="addF=='N'" (click)="addFamily()" class="btn btn-primary">Add Family Members</button>
+            <div *ngIf="addF=='Y'">
+                <div class="card card-body">
+                    <div class="row">
+                        <h2 class="h2" style="font-size: 24px;">Add Family Member</h2>
+                    </div>
+                    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pr-3">
+                                <mat-label>First Name</mat-label>
+                                <input matInput id="first_name" name="first_name" [(ngModel)]="data.formData['first_name']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pl-3">
+                                <mat-label>Middle Name</mat-label>
+                                <input matInput id="middle_name" name="middle_name" [(ngModel)]="data.formData['middle_name']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pr-3">
+                                <mat-label>Last Name</mat-label>
+                                <input matInput id="last_name" name="last_name" [(ngModel)]="data.formData['last_name']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pl-3">
+                                <mat-label>Relationship</mat-label>
+                                <mat-select  id="member_type" name="member_type" [(ngModel)]="data.formData['member_type']">
+                                    <mat-option value="Spouse">Spouse</mat-option>
+                                    <mat-option value="Parent">Parent</mat-option>
+                                    <mat-option value="Child">Child</mat-option>
+                                    <mat-option value="Sibling">Sibling</mat-option>
+                                </mat-select>
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pr-3">
+                                <mat-label>Gender</mat-label>
+                                <mat-select  id="gender" name="gender" [(ngModel)]="data.formData['gender']">
+                                    <mat-option value="Male">Male</mat-option>
+                                    <mat-option value="Female">Female</mat-option>
+                                    <mat-option value="Non-binary">Non-binary</mat-option>
+                                </mat-select>
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pl-3">
+                                <mat-label>Date of Birth</mat-label>
+                                <input matInput id="date_of_birth" name="date_of_birth" [(ngModel)]="data.formData['date_of_birth']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col gt-xs:flex-row">
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pr-3">
+                                <mat-label>Height</mat-label>
+                                <input matInput id="" name="height" [(ngModel)]="data.formData['height']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pl-3">
+                                <mat-label>Weight</mat-label>
+                                <input matInput id="weight" name="weight" [(ngModel)]="data.formData['weight']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                            <mat-form-field
+                                [ngClass]="formFieldHelpers"
+                                class="flex-auto gt-xs:pl-3">
+                                <mat-label>Social Security Number</mat-label>
+                                <input matInput id="social_security_number" name="social_security_number" [(ngModel)]="data.formData['social_security_number']">
+                                <mat-icon
+                                    class="icon-size-5"
+                                    matSuffix
+                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
+                            <button [routerLink]="['/dashboard']" mat-button>
+                                Cancel
+                            </button>
+                            <button
+                                class="px-6 ml-3"
+                                mat-flat-button
+                                [color]="'primary'" (click)="postForm()">
+                                Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>            
+</div>
+<div class="col-xl-5">
+
+</div>
+</div>

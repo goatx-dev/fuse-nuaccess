@@ -139,6 +139,9 @@ this._activatedRoute.data.subscribe(({
 
     }
 
+    fixCont() {
+
+    }
     toggleMult() {
         if (this.mult=='Y') {
             this.mult='N'
@@ -146,6 +149,20 @@ this._activatedRoute.data.subscribe(({
             this.mult='Y'
         }
     }
+
+    postCont(id: any) {
+      this.data.colForm['save_id']=id;
+      this._dataService.postForm("post-edit-quote-request", this.data).subscribe((data:any)=>{
+        if (data.error_code=="0") {
+            this.data=data.data.data;
+            console.log(this.data)
+//          this._router.navigate(['/org-dashboard',data.id])
+        } else {     
+//            this.error=data.error_message
+        }
+      });
+    }
+
     postForm() {
         this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {

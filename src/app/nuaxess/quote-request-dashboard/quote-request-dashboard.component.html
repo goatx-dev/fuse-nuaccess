@@ -90,10 +90,10 @@
         <div class="z-10 relative flex flex-col items-center" style="margin-top: 40px;">
             <h2 class="text-xl font-semibold">Quote Request Dashboard</h2>
             <div class="mt-1 text-4xl sm:text-7xl font-extrabold tracking-tight leading-tight text-center">
-                {{ data.company_name }}
+                {{ data.company['company_name'] }}
             </div>
             <div class="max-w-2xl mt-6 sm:text-2xl text-center tracking-tight text-secondary">
-                {{ data.quote_name }}
+                {{ data.quote['quote_name'] }}
             </div>
         </div>
     </div>
@@ -103,186 +103,7 @@
 <div class="container-fluid p-5" style="margin-top: 30px;">
     <div class="row">
         <div class="col-xl-2">
-            Hello
-        </div>
-        <div class="col-md-12 col-xl-3">
-            <div class="card card-body">            
-                <div class="row">
-                    <div class="col-12">
-                        <button class="btn btn-primary" [routerLink]="['/edit-quote-request',data.id]">Edit Quote</button>
-                        <button *ngIf="data.status!='Submitted'" style="margin-left:20px;" class="btn btn-danger" (click)="submitQuote()">Submit Quote</button>
-                        <span *ngIf="data.status=='Submitted'" style="margin-left:20px;">Quote Submitted</span>
-                    </div>
-                </div>
-                <div class="row">
-<div class="table table-responsive">
-    <thead>
 
-    </thead>
-    <tbody>
-        <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th>ID:</th>
-            <td>{{ data.id }}</td>
-        </tr>
-        <tr>
-            <th>Company:</th>
-            <td>{{ data.company_name }}</td>
-        </tr>
-        <tr>
-            <th>Contact Name:</th>
-            <td>{{ data.contact_name }}</td>
-        </tr>
-        <tr>
-            <th>Contact Phone:</th>
-            <td>{{ data.contact_phone }}</td>
-        </tr>
-        <tr>
-            <th>Contact Email:</th>
-            <td>{{ data.contact_email }}</td>
-        </tr>
-        <tr>
-            <th>Quote Number:</th>
-            <td>{{ data.quote_id }}</td>
-        </tr>
-        <tr>
-            <th>Employee Count:</th>
-            <td>{{ data.employee_count }}</td>
-        </tr>
-        <tr>
-            <th>Date Expires:</th>
-            <td>{{ data.expires_date }}</td>
-        </tr>
-        <tr>
-            <th>Medical:</th>
-            <td>{{ data.medical }}</td>
-        </tr>
-        <tr>
-            <th>Dental:</th>
-            <td>{{ data.dental }}</td>
-        </tr>
-        <tr>
-            <th>Vision:</th>
-            <td>{{ data.vision }}</td>
-        </tr>
-        <tr>
-            <th>Notes:</th>
-            <td>{{ data.notes }}</td>
-        </tr>
-        <tr>
-            <th>Status:</th>
-            <td>{{ data.status }}</td>
-        </tr>
-    </tbody>
-</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-12 col-xl-7">
-<div class="card card-body" style="margin-top:20px;">
-    <div class="table-responsive">
-    <h2 style="font-size: 24px;">Employees</h2>
-    <div class="col-lg-6 py-2">
-        Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
-    </div>
-    <table class="table table-responsive table-striped">
-        <thead>
-            <tr>
-                <th>
-                    Employee Name
-                </th>
-                <th>
-                    Date of Birth
-                </th>
-                <th>
-                    Gender
-                </th>
-                <th>
-
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-<tr *ngFor="let m of data.employees | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
-    <td>
-        {{ m.employee_name }}
-    </td>
-    <th>
-        {{ m.date_of_birth }}
-    </th>
-    <th>
-        {{ m.gender }}
-    </th>
-    <th>
-        <button (click)="edit(m.id,m.employee_name,m.date_of_birth,m.gender);" class="btn btn-primary">Edit</button>
-    </th>
-</tr>
-        </tbody>
-    </table>
-    <div *ngIf="adding=='Y'">
-        <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
-            <div class="flex flex-col gt-xs:flex-row">
-                <mat-form-field
-                    [ngClass]="formFieldHelpers"
-                    class="flex-auto gt-xs:pr-3">
-                    <mat-label>Employee Name</mat-label>
-                    <input matInput id="employee_name" name="employee_name" [(ngModel)]="data.formData['employee_name']">
-                    <mat-icon
-                        class="icon-size-5"
-                        matSuffix
-                        [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                </mat-form-field>
-                <mat-form-field
-                    [ngClass]="formFieldHelpers"
-                    class="flex-auto gt-xs:pl-3">
-                    <mat-label>Date of Birth (MM/DD/YY)</mat-label>
-                    <input matInput id="dob" name="dob" [(ngModel)]="data.formData['date_of_birth']">
-                    <mat-icon
-                        class="icon-size-5"
-                        matSuffix
-                        [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                </mat-form-field>
-            </div>
-            <div class="flex flex-col gt-xs:flex-row">
-                <mat-form-field
-                    [ngClass]="formFieldHelpers"
-                    class="flex-auto gt-xs:pr-3">
-                    <mat-label>Gender</mat-label>
-                    <mat-select  id="gender" name="gender" [(ngModel)]="data.formData['gender']">
-                        <mat-option value="M">Male</mat-option>
-                        <mat-option value="F">Female</mat-option>
-                    </mat-select>
-                    <mat-icon
-                        class="icon-size-5"
-                        matPrefix
-                        [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                </mat-form-field>
-            </div>
-            <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
-                <button mat-button 
-                [color]="'danger'"
-                (click)="deleteForm()">
-                    Delete
-                </button>
-                <button mat-button (click)="addEmployee()">
-                    Cancel
-                </button>
-                <button
-                    class="px-6 ml-3"
-                    mat-flat-button
-                    [color]="'primary'" (click)="postForm()">
-                    Save
-                </button>
-            </div>
-        </form>
-    </div>
-    <button  *ngIf="adding=='N'" class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
-    <button  style="margin-left: 20px;" *ngIf="adding=='N'" class="btn btn-danger" (click)="addEmployee()">Add All Employees</button>
-</div>
-</div>
         </div>
     </div>
     <div *ngIf="data.role=='sadmin'||data.role=='user'" class="row">
@@ -297,7 +118,7 @@
                     </div>
                 </div>
             <div class="table-responsive">
-                <h2 style="font-size: 24px;">Quoted Plans</h2>
+                <h2 style="font-size: 24px;">Quoted Products</h2>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -352,6 +173,138 @@
         </div>
     </div>
     </div>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-xl-2"></div>
+            <div class="col-xl-10">
+                <div class="row">
+            <div class="col-xl-4" *ngFor="let m of data.plans">
+                <div class="card card-body"  style="margin-top:20px;">
+                    <div class="table-responsive">
+                        <h2 class="h2" style="font-size: 24px;">{{ m.name }} 
+                         <span>
+                            
+                        </span>
+                         </h2>
+                        <table class="table table-responsive table-striped">
+                            <thead>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        Type 
+                                    </th>
+                                    <td>
+                                        {{ m.plan_type }}
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <th>
+                                        Plan
+                                    </th>
+                                    <td>
+                                        {{ m.name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        Include Plan in Quote
+                                    </th>
+                                    <td>
+                                        <select
+                                        style="max-width: 200px;" 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="contribution_level_id" 
+                                        name="contribution_level_id" 
+                                        [(ngModel)]="data.colForm['omitted_'+m.id]">
+                                        <option value="Y">DO NOT Include Plan</option>
+                                        <option value="N">YES - Include Plan</option>
+                                    </select>
+                                    </td>
+                                </tr>                                   
+                                <tr>
+                                    <th>
+                                        Employee Only
+                                    </th>
+                                    <td>
+                                        <input 
+                                        style="max-width: 200px;" 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="contribution_level_id" 
+                                        name="contribution_level_id" 
+                                        [(ngModel)]="data.colForm['employee_'+m.id]">
+                                    </td>
+                                </tr>    
+                                <tr>
+                                    <th>
+                                        Employee / Spouse
+                                    </th>
+                                    <td>
+                                        <input 
+                                        style="max-width: 200px;" 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="contribution_level_id" 
+                                        name="contribution_level_id" 
+                                        [(ngModel)]="data.colForm['employeespouse_'+m.id]">
+                                    </td>
+                                </tr>   
+                                <tr>
+                                    <th>
+                                        Employee / Children
+                                    </th>
+                                    <td>
+                                        <input 
+                                        style="max-width: 200px;" 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="contribution_level_id" 
+                                        name="contribution_level_id" 
+                                        [(ngModel)]="data.colForm['employeechildren_'+m.id]">
+                                    </td>
+                                </tr>   
+                                <tr>
+                                    <th>
+                                        Family
+                                    </th>
+                                    <td>
+                                        <input 
+                                        style="max-width: 200px;" 
+                                        type="text" 
+                                        class="form-control" 
+                                        id="contribution_level_id" 
+                                        name="contribution_level_id" 
+                                        [(ngModel)]="data.colForm['family_'+m.id]">
+                                    </td>
+                                </tr>   
+                                <tr style="background-color: lawngreen;" *ngIf="data.colForm['message_'+m.id]!=''">
+                                    <th>
+                                        
+                                    </th>
+                                    <td style="background-color: lawngreen;">
+                                        {{ data.colForm['message_'+m.id] }}
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <th>
+                                        
+                                    </th>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="postCont(m.id)">Save</button>
+                                    </td>
+                                </tr>   
+                            </tbody>
+                        </table>
+                      </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+        </div>
+</div>
 </div>
 
 

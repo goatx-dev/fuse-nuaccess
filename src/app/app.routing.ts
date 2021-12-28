@@ -34,6 +34,16 @@ import { UserEnrollComponent } from './nuaxess/user-enroll/user-enroll.component
 import { BadminComponent } from './nuaxess/badmin/badmin.component';
 import { EadminComponent } from './nuaxess/eadmin/eadmin.component';
 import { DashboardComponent } from './nuaxess/dashboard/dashboard.component';
+import { ActivePlanDashboardComponent } from './nuaxess/active-plan-dashboard/active-plan-dashboard.component';
+import { EmployeeDashboardComponent } from './nuaxess/employee-dashboard/employee-dashboard.component';
+import { EmployeeIHQComponent } from './nuaxess/employee-ihq/employee-ihq.component';
+import { MemberInfoComponent } from './nuaxess/member-info/member-info.component';
+import { MemberFamilyComponent } from './nuaxess/member-family/member-family.component';
+import { MemberPlansComponent } from './nuaxess/member-plans/member-plans.component';
+import { MemberIHQComponent } from './nuaxess/member-ihq/member-ihq.component';
+import { MemberProfileComponent } from './nuaxess/member-profile/member-profile.component';
+import { MemberMedicationsComponent } from './nuaxess/member-medications/member-medications.component';
+import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insurance.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -83,6 +93,13 @@ export const appRoutes: Route[] = [
             {path: 'sign-out', loadChildren: () => import('app/modules/auth/sign-out/sign-out.module').then(m => m.AuthSignOutModule)},
             {path: 'unlock-session', loadChildren: () => import('app/modules/auth/unlock-session/unlock-session.module').then(m => m.AuthUnlockSessionModule)},
             {path: 'sadmin', component: AdminDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'info', component: MemberInfoComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'family', component: MemberFamilyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'plans', component: MemberPlansComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'ihq', component: MemberIHQComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'medications', component: MemberMedicationsComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'previous', component: MemberInsuranceComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'profile', component: MemberProfileComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'badmin', component: BadminComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'badmin', component: EadminComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'dashboard', component: DashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
@@ -95,6 +112,7 @@ export const appRoutes: Route[] = [
             {path: 'org-list', component: OrgListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'org-dashboard/:id', component: OrgDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-org/:id', component: EditOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'edit-org/:id/:id2', component: EditOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-plan/:id', component: EditPlanComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-company/:id', component: EditCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-member/:id', component: EditMemberComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
@@ -104,6 +122,8 @@ export const appRoutes: Route[] = [
             {path: 'company-list/:id', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-list', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-dashboard/:id', component: CompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'employee-dashboard/:id', component: EmployeeDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'employee-dashboard/:id/:id2', component: EmployeeDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-dashboard/:id/:id2', component: CompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-plan', component: AddPlanComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'plan-list', component: PlanListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
@@ -121,6 +141,8 @@ export const appRoutes: Route[] = [
             {path: 'quote-request-dashboard/:id', component: QuoteRequestDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'quote-request-dashboard/:id/:id2', component: QuoteRequestDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-quote-request/:id', component: EditQuoteComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'employee-ihq/:id', component: EmployeeIHQComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'active-plan-dashboard/:id', component: ActivePlanDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'enroll/:id', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
             {path: 'enroll', component: UserEnrollComponent, resolve: { data: EnrollResolver }, }
         ]

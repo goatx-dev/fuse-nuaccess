@@ -29,6 +29,7 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
     email: any;
     user: any;
     adding: any;
+    addcont: any;
     employee_name: any;
     dob: any;
 
@@ -56,6 +57,7 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
           console.log(this.data)
       }) 
             this.adding='N';
+            this.addcont='N';
             this._fuseMediaWatcherService.onMediaChange$
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(({matchingAliases}) => {
@@ -136,12 +138,44 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
       }
     }
 
+    addLevel() {
+      if (this.addcont=='N') {
+        this.data.formData2['id']="";
+        this.data.formData2['class_level']="";
+        this.data.formData2['applicable_plan']="";
+        this.data.formData2['coverage_level']="";
+        this.data.formData2['value']="";
+        this.addcont='Y';
+      } else {
+        this.addcont='N';
+        this.data.formData2['id']="";
+        this.data.formData2['class_level']="";
+        this.data.formData2['applicable_plan']="";
+        this.data.formData2['coverage_level']="";
+        this.data.formData2['value']="";
+      }
+    }
+
+    editLevel(id:any, class_level:any ,applicable_plan: any,coverage_level: any, value: any, type:any) {
+      this.data.formData2['id']=id;
+      this.data.formData2['class_level']=class_level;
+      this.data.formData2['applicable_plan']=applicable_plan;
+      this.data.formData2['coverage_level']=coverage_level;
+      this.data.formData2['value']=value;
+      this.data.formData2['type']=type;
+      this.addcont='Y';
+  }
+
     edit(id: any, employee_name: any, date_of_birth:any, gender: any) {
         this.data.formData['id']=id;
         this.data.formData['employee_name']=employee_name;
         this.data.formData['date_of_birth']=date_of_birth;
         this.data.formData['gender']=gender;
         this.adding='Y';
+    }
+
+    editBlur(id: any) {
+      this.data.colForm['message_'+id]="";
     }
 
     deleteForm() {
@@ -159,7 +193,31 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
     }
 
     postForm() {
-        this._dataService.postForm("post-add-employee-small", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-add-employee-small", this.data['formData']).subscribe((data:any)=>{
+          if (data.error_code=="0") {
+            location.reload();
+          } else {     
+//            this.error=data.error_message
+          }
+        });
+      }
+
+    postEmployee() {
+      this._dataService.postForm("post-add-employee-small", this.data).subscribe((data:any)=>{
+        if (data.error_code=="0") {
+          location.reload();
+        } else {     
+//            this.error=data.error_message
+        }
+      });
+    }
+
+  editE(id: any) {
+       
+  }
+
+    postForm2() {
+        this._dataService.postForm("post-add-level", this.data['formData2']).subscribe((data:any)=>{
           if (data.error_code=="0") {
             location.reload();
           } else {     
