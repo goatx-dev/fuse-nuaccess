@@ -118,6 +118,18 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
     }
 
     notifySMS() {
+      if (confirm("Are you sure you want to send this invitation using SMS?")) {
+
+
+      this._dataService.postForm("send-invite", this.data).subscribe((data:any)=>{
+        if (data.error_code=="0") {
+              alert('SMS Message Sent')
+        } else {     
+          alert('ERROR: SMS Message WAS NOT Sent!')
+        }
+      });
+    
+    }
 
     }
 
@@ -137,5 +149,4 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
           }
         });
       }
-
 }

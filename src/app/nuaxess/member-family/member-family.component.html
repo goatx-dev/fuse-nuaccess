@@ -159,7 +159,7 @@
             <button  *ngIf="addF=='N'" (click)="addFamily()" class="btn btn-primary">Add Family Members</button>
             <div *ngIf="addF=='Y'">
                 <div class="card card-body">
-                    <div class="row">
+                    <div class="row" style="margin-right: 0px !important;">
                         <h2 class="h2" style="font-size: 24px;">Add Family Member</h2>
                     </div>
                     <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
@@ -271,7 +271,7 @@
                             </mat-form-field>
                         </div>
                         <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
-                            <button [routerLink]="['/dashboard']" mat-button>
+                            <button (click)="addFamily()" mat-button>
                                 Cancel
                             </button>
                             <button

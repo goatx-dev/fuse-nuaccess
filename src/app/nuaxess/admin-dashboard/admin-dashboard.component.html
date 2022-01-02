@@ -1,29 +1,22 @@
-<!-- Loading bar -->
 <fuse-loading-bar></fuse-loading-bar>
-
-<!-- Navigation -->
 <fuse-vertical-navigation
     class="dark bg-gray-900 print:hidden"
     [mode]="isScreenSmall ? 'over' : 'side'"
     [name]="'mainNavigation'"
     [navigation]="navigation.default"
     [opened]="!isScreenSmall">
-    <!-- Navigation header hook -->
     <ng-container fuseVerticalNavigationContentHeader>
         <div class="flex items-center w-full p-4 pl-6">
-            <!-- Logo -->
             <div class="flex items-center justify-center">
                 <img
                     class="w-8"
                     src="assets/images/logo/logo.svg">
             </div>
-            <!-- Components -->
             <div class="flex items-center ml-auto">
                 <notifications></notifications>
                 <user [showAvatar]="false"></user>
             </div>
         </div>
-        <!-- User -->
         <div class="flex flex-col items-center w-full p-4">
             <div class="relative w-24 h-24">
                 <img
@@ -141,7 +134,16 @@
                                                             [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
                                                     </button>
                                                     <mat-menu #summaryMenu="matMenu">
-                                                        <button [routerLink]="['/company-list']" mat-menu-item>Company List</button>
+                                                        <button [routerLink]="['/company-list']" mat-menu-item>All Company List</button>
+                                                        <button [routerLink]="['/company-list/new']" mat-menu-item>New/Added Only</button>
+                                                        <button [routerLink]="['/company-list/starting']" mat-menu-item>Started</button>
+                                                        <button [routerLink]="['/company-list/requesting']" mat-menu-item>Preparing Quote Request</button>
+                                                        <button [routerLink]="['/company-list/submitted']" mat-menu-item>Submitted Quote Request</button>
+                                                        <button [routerLink]="['/company-list/quoted']" mat-menu-item>Quote Submitted</button>
+                                                        <button [routerLink]="['/company-list/rejected']" mat-menu-item>Quote Rejected</button>
+                                                        <button [routerLink]="['/company-list/rejected']" mat-menu-item>Quote Accepted</button>
+                                                        <button [routerLink]="['/company-list/rejected']" mat-menu-item>Enrolling</button>
+                                                        <button [routerLink]="['/company-list/rejected']" mat-menu-item>Enrolled</button>
                                                         <button [routerLink]="['/add-company']" mat-menu-item>Add Company</button>
                                                     </mat-menu>
                                                 </div>
@@ -164,9 +166,12 @@
                                                             [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
                                                     </button>
                                                     <mat-menu #overdueMenu="matMenu">
-                                                        <button mat-menu-item>Requests</button>
-                                                        <button mat-menu-item>Pending</button>
-                                                        <button mat-menu-item>Enrolling</button>
+                                                        <button [routerLink]="['/quote-list/preparing']" mat-menu-item>Preparing Request</button>
+                                                        <button [routerLink]="['/quote-list/requested']" mat-menu-item>Requested</button>
+                                                        <button [routerLink]="['/quote-list/pending']" mat-menu-item>Pending</button>
+                                                        <button [routerLink]="['/quote-list/accepted']" mat-menu-item>Accepted</button>
+                                                        <button [routerLink]="['/quote-list/rejected']" mat-menu-item>Rejected</button>
+                                                        <button [routerLink]="['/quote-list/enrolling']" mat-menu-item>Enrolling</button>
                                                     </mat-menu>
                                                 </div>
                                             </div>
@@ -181,7 +186,7 @@
                                         <!-- Issues -->
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">In Enrollment</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Users</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -191,21 +196,22 @@
                                                             [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
                                                     </button>
                                                     <mat-menu #issuesMenu="matMenu">
-                                                        <button mat-menu-item>Yesterday</button>
-                                                        <button mat-menu-item>2 days ago</button>
-                                                        <button mat-menu-item>3 days ago</button>
+                                                        <button [routerLink]="['/user-list/active']" mat-menu-item>Active</button>
+                                                        <button [routerLink]="['/quote-list/pending']" mat-menu-item>Pending Enrollment</button>
+                                                        <button [routerLink]="['/quote-list/reset']" mat-menu-item>In Password Reset</button>
+                                                        <button [routerLink]="['/quote-list/locked']" mat-menu-item>Locked</button>
                                                     </mat-menu>
                                                 </div>
                                             </div>
                                             <div class="flex flex-col items-center mt-2">
-                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">{{ data.in_enrollment_count }}</div>
-                                                <div class="text-lg font-medium text-amber-600 dark:text-amber-500">Enrolling</div>
+                                                <div class="text-7xl sm:text-8xl font-bold tracking-tight leading-none text-amber-500">{{ data.user_count }}</div>
+                                                <div class="text-lg font-medium text-amber-600 dark:text-amber-500">User Accounts</div>
                                             </div>
                                         </div>
                                         <!-- Features -->
                                         <div class="flex flex-col flex-auto p-6 bg-card shadow rounded-2xl overflow-hidden">
                                             <div class="flex items-start justify-between">
-                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Enrolled</div>
+                                                <div class="text-lg font-medium tracking-tight leading-6 truncate">Enrolled / Enrolling</div>
                                                 <div class="ml-2 -mt-2 -mr-3">
                                                     <button
                                                         mat-icon-button
@@ -215,9 +221,8 @@
                                                             [svgIcon]="'heroicons_solid:dots-vertical'"></mat-icon>
                                                     </button>
                                                     <mat-menu #featuresMenu="matMenu">
-                                                        <button mat-menu-item>Yesterday</button>
-                                                        <button mat-menu-item>2 days ago</button>
-                                                        <button mat-menu-item>3 days ago</button>
+                                                        <button [routerLink]="['/member-list/enrolling']" mat-menu-item>In Enrollement</button>
+                                                        <button [routerLink]="['/member-list/completed']" mat-menu-item>Enrollment Completed</button>
                                                     </mat-menu>
                                                 </div>
                                             </div>

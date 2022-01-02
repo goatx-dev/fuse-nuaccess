@@ -32,6 +32,7 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
     addcont: any;
     employee_name: any;
     dob: any;
+    editQQ: any;
 
     /**
      * Constructor
@@ -49,6 +50,7 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void
     {      
+      this.editQQ='N'
       this._activatedRoute.data.subscribe(({ 
         data, menudata, userdata })=> { 
           this.data=data;
@@ -215,6 +217,14 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
   editE(id: any) {
        
   }
+
+editQuote() {
+  if (this.editQQ=='N') {
+    this.editQQ='Y'
+  } else {
+    this.editQQ='N'
+  }
+}
 
     postForm2() {
         this._dataService.postForm("post-add-level", this.data['formData2']).subscribe((data:any)=>{

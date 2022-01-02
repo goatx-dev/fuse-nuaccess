@@ -115,7 +115,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button class="btn btn-primary" [routerLink]="['/edit-user',data.id]">Edit User</button>
-                        <button style="margin-left: 20px;" class="btn btn-danger" [routerLink]="['/edit-user',data.id]">Notify via SMS</button>
+                        <button style="margin-left: 20px;" class="btn btn-danger" (click)="notifySMS()">Notify via SMS</button>
                         <button style="margin-left: 20px;" class="btn btn-danger" [routerLink]="['/edit-user',data.id]">Notify via Email</button>
                     </div>
                 </div>

@@ -29,6 +29,7 @@ export class QuoteRequestDashboardComponent implements OnInit, OnDestroy {
     user: any;
     adding: any;
     mult: any;
+    editQ: any;
 
     /**
      * Constructor
@@ -46,8 +47,13 @@ export class QuoteRequestDashboardComponent implements OnInit, OnDestroy {
 addEmployee() {
 
 }
+
+editQuote() {
+
+}
     ngOnInit(): void
     {      
+      this.editQ='N';
 this.adding='N';
 this.mult='N';
 this._activatedRoute.data.subscribe(({ 
@@ -163,10 +169,47 @@ this._activatedRoute.data.subscribe(({
       });
     }
 
+edit() {
+  if (this.editQ=='N') {
+     this.editQ='Y'
+  } else {
+     this.editQ='N'
+  }
+
+}
+
+make() {
+  this._dataService.postForm("post-make-plans", this.data['formData']).subscribe((data:any)=>{
+    if (data.error_code=="0") {
+//            this._router.navigate(['/org-dashboard',data.id])
+        location.reload()
+    } else {     
+//            this.error=data.error_message
+    }
+  });
+}
+
+submit() {
+  if (confirm('Are you sure you want to submit this quote request?')) {
+
+  this._dataService.postForm("submit-quote-request", this.data['formData']).subscribe((data:any)=>{
+    if (data.error_code=="0") {
+//            this._router.navigate(['/org-dashboard',data.id])
+        location.reload()
+    } else {     
+//            this.error=data.error_message
+    }
+  });
+
+      
+}
+}
+
     postForm() {
-        this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-edit-quote-background", this.data['formData']).subscribe((data:any)=>{
           if (data.error_code=="0") {
-            this._router.navigate(['/org-dashboard',data.id])
+//            this._router.navigate(['/org-dashboard',data.id])
+              location.reload()
           } else {     
 //            this.error=data.error_message
           }

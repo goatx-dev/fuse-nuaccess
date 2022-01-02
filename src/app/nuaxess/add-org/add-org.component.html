@@ -88,13 +88,13 @@
     <!-- Main -->
     <div class="row">
         <div class="col-xl-5">
-            <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
+            <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden" autocomplete="off">
                 <div class="flex flex-col gt-xs:flex-row">
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Organization name</mat-label>
-                        <input matInput id="org_name" name="org_name" [(ngModel)]="data.formData['org_name']">
+                        <input matInput id="org_name" name="org_name" [(ngModel)]="data.formData['org_name']" autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -104,11 +104,25 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Contact Full Name</mat-label>
-                        <input matInput id="contact_full_name" name="contact_full_name" [(ngModel)]="data.formData['contact_full_name']">
+                        <input matInput id="contact_full_name" name="contact_full_name" [(ngModel)]="data.formData['contact_full_name']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
                             [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
+                    </mat-form-field>
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pr-3">
+                        <mat-label>Type</mat-label>
+                        <mat-select  id="type" name="type" [(ngModel)]="data.formData['type']">
+                            <mat-option value="PEO">PEO</mat-option>
+                            <mat-option value="Sales">Sales</mat-option>
+                            <mat-option value="Provider">Provider</mat-option>
+                        </mat-select>
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
                     </mat-form-field>
                 </div>
                 <div class="flex flex-col gt-xs:flex-row">
@@ -116,7 +130,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Contact Email</mat-label>
-                        <input matInput id="org_name" name="email" [(ngModel)]="data.formData['email']">
+                        <input matInput id="org_name" name="email" [(ngModel)]="data.formData['email']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -126,7 +140,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Contact Mobile Phone</mat-label>
-                        <input matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
+                        <input matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -138,7 +152,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Billing Contact</mat-label>
-                        <input matInput id="billing_contact_name" name="billing_contact_name" [(ngModel)]="data.formData['billing_contact_name']">
+                        <input matInput id="billing_contact_name" name="billing_contact_name" [(ngModel)]="data.formData['billing_contact_name']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -148,7 +162,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Billing Contact Phone</mat-label>
-                        <input matInput id="billing_contact_phone" name="billing_contact_phone" [(ngModel)]="data.formData['billing_contact_phone']">
+                        <input matInput id="billing_contact_phone" name="billing_contact_phone" [(ngModel)]="data.formData['billing_contact_phone']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -160,7 +174,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Billing Contact Email</mat-label>
-                        <input matInput id="billing_contact_email" name="billing_contact_email" [(ngModel)]="data.formData['billing_contact_email']">
+                        <input matInput id="billing_contact_email" name="billing_contact_email" [(ngModel)]="data.formData['billing_contact_email']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -170,7 +184,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Tech Contact Name</mat-label>
-                        <input matInput id="admin_contact_name" name="admin_contact_name" [(ngModel)]="data.formData['admin_contact_name']">
+                        <input matInput id="admin_contact_name" name="admin_contact_name" [(ngModel)]="data.formData['admin_contact_name']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -180,7 +194,7 @@
                     [ngClass]="formFieldHelpers"
                     class="flex-auto gt-xs:pr-3">
                     <mat-label>Tech Contact Phone</mat-label>
-                    <input matInput id="admin_contact_phone" name="admin_contact_phone" [(ngModel)]="data.formData['admin_contact_phone']">
+                    <input matInput id="admin_contact_phone" name="admin_contact_phone" [(ngModel)]="data.formData['admin_contact_phone']"  autocomplete="new-password">
                     <mat-icon
                         class="icon-size-5"
                         matSuffix
@@ -196,7 +210,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Tech Contact Email</mat-label>
-                        <input matInput id="admin_contact_email" name="admin_contact_email" [(ngModel)]="data.formData['admin_contact_email']">
+                        <input matInput id="admin_contact_email" name="admin_contact_email" [(ngModel)]="data.formData['admin_contact_email']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -210,9 +224,9 @@
                         <mat-label>Address</mat-label>
                         <textarea
                             matInput
-                            [rows]="3"
+                            [rows]="1"
                             matTextareaAutosize
-                            id="address" name="adddress" [(ngModel)]="data.formData['address']"></textarea>
+                            id="address" name="adddress" [(ngModel)]="data.formData['address']"  autocomplete="new-password"></textarea>
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -224,7 +238,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-md:pr-3">
                         <mat-label>City</mat-label>
-                        <input matInput  id="city" name="city" [(ngModel)]="data.formData['city']">
+                        <input matInput  id="city" name="city" [(ngModel)]="data.formData['city']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -234,7 +248,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-md:pl-3">
                         <mat-label>State</mat-label>
-                        <input matInput  id="state" name="state" [(ngModel)]="data.formData['state']">
+                        <input matInput  id="state" name="state" [(ngModel)]="data.formData['state']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -250,7 +264,7 @@
                             matInput
                             maxlength="15"
                             #postalCode
-                            id="zip" name="zip" [(ngModel)]="data.formData['zip']">
+                            id="zip" name="zip" [(ngModel)]="data.formData['zip']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -262,7 +276,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-md:pr-3">
                         <mat-label>Website</mat-label>
-                        <input matInput  id="website" name="website" [(ngModel)]="data.formData['website']">
+                        <input matInput  id="website" name="website" [(ngModel)]="data.formData['website']"  autocomplete="new-password">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -276,7 +290,7 @@
                             matInput
                             [rows]="3"
                             matTextareaAutosize
-                            id="dsc" name="dsc" [(ngModel)]="data.formData['dsc']"></textarea>
+                            id="dsc" name="dsc" [(ngModel)]="data.formData['dsc']"  autocomplete="new-password"></textarea>
                         <mat-icon
                             class="icon-size-5"
                             matSuffix

@@ -44,6 +44,9 @@ import { MemberIHQComponent } from './nuaxess/member-ihq/member-ihq.component';
 import { MemberProfileComponent } from './nuaxess/member-profile/member-profile.component';
 import { MemberMedicationsComponent } from './nuaxess/member-medications/member-medications.component';
 import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insurance.component';
+import { InvalidTokenComponent } from './nuaxess/invalid-token/invalid-token.component';
+import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.component';
+import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -51,7 +54,7 @@ import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insu
 export const appRoutes: Route[] = [
 
 
-    {path: '', pathMatch : 'full', redirectTo: 'sadmin'},
+    {path: '', pathMatch : 'full', redirectTo: 'sign-in'},
 
     // Redirect signed in user to the '/dashboards/project'
     //
@@ -73,9 +76,15 @@ export const appRoutes: Route[] = [
             {path: 'confirmation-required', loadChildren: () => import('app/modules/auth/confirmation-required/confirmation-required.module').then(m => m.AuthConfirmationRequiredModule)},
             {path: 'forgot-password', loadChildren: () => import('app/modules/auth/forgot-password/forgot-password.module').then(m => m.AuthForgotPasswordModule)},
             {path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule)},
-            {path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)},
+            {path: 'sign-in2', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule)},
             {path: 'sign-up', loadChildren: () => import('app/modules/auth/sign-up/sign-up.module').then(m => m.AuthSignUpModule)},
             {path: 'enroll/:id', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
+            {path: 'e/:id', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
+            {path: 'e', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
+            {path: 'forced-off/:id', component: ForcedLogoutComponent },
+            {path: 'forced-off', component: ForcedLogoutComponent },
+            {path: 'sign-in', component: NewSigninComponent },
+            {path: 'error', component: InvalidTokenComponent },
             {path: 'enroll', component: UserEnrollComponent, resolve: { data: EnrollResolver }, }
         ]
     },
@@ -104,11 +113,15 @@ export const appRoutes: Route[] = [
             {path: 'badmin', component: EadminComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'dashboard', component: DashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-user', component: AddUserComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-user/:id', component: AddUserComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-user/:id/:id2', component: AddUserComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'user-list', component: UserListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'user-list/:id', component: UserListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'user-dashboard/:id', component: UserDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'user-dashboard/:id/:id2', component: UserDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-org', component: AddOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-org/:id', component: AddOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-org/:id/:id2', component: AddOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'org-list', component: OrgListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'org-dashboard/:id', component: OrgDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-org/:id', component: EditOrgComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
@@ -119,6 +132,8 @@ export const appRoutes: Route[] = [
             {path: 'edit-user/:id', component: EditUserComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-org/:id', component: EditQuoteComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-company', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-company/:id', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-company/:id/:id2', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-list/:id', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-list', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-dashboard/:id', component: CompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },

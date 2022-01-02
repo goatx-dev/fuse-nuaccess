@@ -112,7 +112,7 @@
                         <tbody>
                             <tr *ngFor="let m of data | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
                                 <td>{{ m.id }}</td>
-                                <td>{{ m.request_date }}</td>
+                                <td>{{ m.date_sent }}</td>
                                 <td>{{ m.org_name }}</td>
                                 <td>{{ m.company_name }}</td>
                                 <td>{{ m.requested_name }}</td>

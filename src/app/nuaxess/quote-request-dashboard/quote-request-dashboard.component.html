@@ -76,7 +76,7 @@
     </div>
 </div>
     <!-- Header -->
-    <div class="relative flex-0 py-8 px-4 sm:p-16 overflow-hidden bg-gray-800 dark" style="padding-bottom: 20px;">
+    <div class="relative flex-0 py-8 px-4 sm:p-16 overflow-hidden bg-gray-800 dark" style="padding-bottom: 20px !important; padding-top: 20px !important;">
         <!-- Background - @formatter:off -->
         <!-- Rings -->
         <svg class="absolute inset-0 pointer-events-none"
@@ -103,75 +103,223 @@
 <div class="container-fluid p-5" style="margin-top: 30px;">
     <div class="row">
         <div class="col-xl-2">
-
-        </div>
+         </div>
     </div>
-    <div *ngIf="data.role=='sadmin'||data.role=='user'" class="row">
+    <div class="row">
         <div class="col-xl-2">
-            Hello
+           
         </div>
-        <div class="col-md-10">
-            <div class="card card-body">
+        <div class="col-xl-10">
                 <div class="row">
-                    <div class="col-md-12 col-xl-2">
-                        &nbsp;
+                    <div class="col-md-12 col-xl-4">
+                        <button mat-button [routerLink]="['/company-dashboard',data.formData.company_id]">Go Back</button>
+
+                        <div class="card card-body">            
+                        <div class="row">
+                            <div class="table table-responsive">
+                                <thead>
+                            
+                                </thead>
+                                <tbody>                                   
+                                    <tr>
+                                        <th>
+
+                                        </th>
+                                        <th>
+                                            <span *ngIf="(data.user.role=='sadmin'||data.user.role=='user')&&data.plans.length==0">
+                                                <button class="btn btn-primary" (click)="make()">Make Plans</button>
+                                            </span>
+                                            <span *ngIf="(data.user.role=='badmin'||data.user.role=='broker')&&data.quote['status']=='New'">
+                                                <button class="btn btn-danger" (click)="submit()">Submit Quote Request</button>
+                                            </span>
+                                            <span *ngIf="(data.user.role=='badmin'||data.user.role=='broker')&&data.quote['status']!='New'">
+                                                Quote Submitted at {{ data.quote['date_sent'] }}
+                                            </span>
+                                            <span *ngIf="(data.user.role=='sadmin'||data.user.role=='user')&&data.plans.length>0">
+                                                <button class="btn btn-danger" (click)="edit()">Send Quote</button>
+                                            </span>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th>ID:</th>
+                                        <td>{{ data['quote'].id }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Quote ID:</th>
+                                        <td>{{ data['quote'].quote_key }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Name:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].name }}</span>
+                                            <span *ngIf="editQ=='Y'"><input type="text" class="form-control" id="name" name="name" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].name"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Timestamp:</th>
+                                        <td>{{ data['quote'].create_timestamp }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Contact Name:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].contact_name }}</span>
+                                            <span *ngIf="editQ=='Y'"><input type="text" class="form-control" id="contact_name" name="contact_name" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].contact_name"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Contact Email:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].contact_email }}</span>
+                                            <span *ngIf="editQ=='Y'"><input type="text" class="form-control" id="contact_email" name="contact_email" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].contact_email"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Contact Phone:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].contact_phone }}</span>
+                                            <span *ngIf="editQ=='Y'"><input type="text" class="form-control" id="contact_phone" name="contact_phone" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].contact_phone"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Employee Count:</th>
+                                        <td><span *ngIf="editQ=='N'">{{ data['quote'].employee_count }}</span>
+                                            <span *ngIf="editQ=='Y'">
+                                                <select class="form-control" id="employee_count" name="employee_count" style="width:200px;"
+                                                [(ngModel)]="data['formData'].employee_count">
+                                                <option value="0-10">0-10</option>
+                                                <option value="11-50">11-50</option>
+                                                <option value="51-100">51-100</option>
+                                                <option value="Over 100">Over 100</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Include Medical:</th>
+                                        <td><span *ngIf="editQ=='N'">{{ data['quote'].medical }}</span>
+                                            <span *ngIf="editQ=='Y'">
+                                                <select class="form-control" id="medical" name="medical" style="width:200px;"
+                                                [(ngModel)]="data['formData'].medical">
+                                                <option value="N">No</option>
+                                                <option value="Y">Yes</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Include Dental:</th>
+                                        <td><span *ngIf="editQ=='N'">{{ data['quote'].dental }}</span>
+                                            <span *ngIf="editQ=='Y'">
+                                                <select class="form-control" id="dental" name="dental" style="width:200px;"
+                                                [(ngModel)]="data['formData'].dental">
+                                                <option value="N">No</option>
+                                                <option value="Y">Yes</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Include Vision:</th>
+                                        <td><span *ngIf="editQ=='N'">{{ data['quote'].vision }}</span>
+                                            <span *ngIf="editQ=='Y'">
+                                                <select class="form-control" id="vision" name="vision" style="width:200px;"
+                                                [(ngModel)]="data['formData'].vision">
+                                                <option value="N">No</option>
+                                                <option value="Y">Yes</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Requested By:</th>
+                                        <td>{{ data['quote'].requested_by }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Expires:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].expires_date }}</span>
+                                            <span *ngIf="editQ=='Y'"><input type="text" class="form-control" id="expires_date" name="expires_date" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].expires_date"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Status:</th>
+                                        <td><span *ngIf="editQ=='N'">{{ data['quote'].status }}</span>
+                                            <span *ngIf="editQ=='Y'">
+                                                <select class="form-control" id="status" name="status" style="width:200px;"
+                                                [(ngModel)]="data['formData'].status">
+                                                <option value="New">New - Not Submitted</option>
+                                                <option value="Requested">Requested</option>
+                                                <option value="In-Quoting">In Quoting</option>
+                                                <option value="Quoted">Quoted</option>
+                                                <option value="Accepted">Accepted</option>
+                                                <option value="Rejected">Rejected</option>
+                                                <option value="Cancelled">Cancelled</option>
+                                                <option value="Enrolling">Enrolling</option>
+                                                <option value="Active">Active</option>
+                                                </select>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>Note:</th>
+                                        <td>
+                                            <span *ngIf="editQ=='N'">{{ data['quote'].notes }}</span>
+                                            <span *ngIf="editQ=='Y'"><textarea rows="5" type="text" class="form-control" id="notes" name="notes" style="width:200px;"
+                                                      [(ngModel)]="data['formData'].notes">
+                                                    </textarea>
+                                                    </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th></th>
+                                        <td>
+                                            <span *ngIf="editQ=='Y'">
+                                                <button class="btn btn-primary" (click)="postForm()">Save Quote</button>
+                                                <button style="margin-left:20px;" class="btn" (click)="edit()">Cancel</button>
+                                            </span>
+                                            <span *ngIf="editQ=='N'">
+                                                <button class="btn btn-primary" (click)="edit()">Edit Quote</button>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                        </div>
+                                            </div>
                     </div>
-                </div>
-            <div class="table-responsive">
-                <h2 style="font-size: 24px;">Quoted Products</h2>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Plan Name</th>
-                            <th>Plan Type</th>
-                            <th>Single Base</th>
-                            <th>Single Quote</th>
-                            <th>Spouse Base</th>
-                            <th>Spouse Quote</th>
-                            <th>Family Base</th>
-                            <th>Family Quote</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th><button  style="margin-left: 20px;" class="btn btn-primary" (click)="toggleMult()">Apply Multiplier</button></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                    <tr *ngIf="mult=='Y'">
-                        <th></th>
-                        <th></th>
-                        <th><input class="form-control" style="width:80px;" type="text" id="single_quote_rate" name="single_quote_rate"></th>
-                        <th></th>
-                        <th><input class="form-control" style="width:80px;" type="text"  id="spouse_quote_rate" name="spouse_quote_rate"></th>
-                        <th></th>
-                        <th><input class="form-control" style="width:80px;" type="text"  id="family_quote_rate" name="family_quote_rate"></th>
-                        <th></th>
-                        <td><button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-warning">Apply</button></td>
-                    </tr>
-                        <tr *ngFor="let m of data.quotes">
-                            <td>{{ m.plan_name }}</td>
-                            <td>{{ m.plan_type }}</td>
-                            <td>{{ m.single_base_rate }}</td>
-                            <td>{{ m.single_quote_rate }}</td>
-                            <td>{{ m.spouse_base_rate }}</td>
-                            <td>{{ m.spouse_quote_rate }}</td>
-                            <td>{{ m.family_base_rate }}</td>
-                            <td>{{ m.family_quote_rate }}</td>
-                            <td><button [routerLink]="['/quote-request-dashboard',m.id]" class="btn btn-primary">Edit</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>                
+                    <div class="col-xl-5">
+                        <div class="card card-body"> 
+                        <div class="table-responsive">
+                            <h2 style="font-size: 24px;">Quoted Employees</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Gender</th>
+                                        <th>Date of Birth</th>
+                                        <th>Date of Hire</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let m of data.employees">
+                                        <td>{{ m.last_name}}, {{ m.first_name }} {{ m.middle_name }}</td>
+                                        <td>{{ m.gender }}</td>
+                                        <td>{{ m.date_of_birth }}</td>
+                                        <td>{{ m.date_of_hire }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> 
+                        </div>
+                    </div>
+                </div>               
         </div>
-    </div>
     </div>
     <div class="card card-body">
         <div class="row">
@@ -179,7 +327,7 @@
             <div class="col-xl-10">
                 <div class="row">
             <div class="col-xl-4" *ngFor="let m of data.plans">
-                <div class="card card-body"  style="margin-top:20px;">
+                <div class="card card-body"  style="margin-top:20px;" [ngStyle]="{'background-color':data.colForm['omitted_'+m.id] === 'Y' ? '#FCE5EB' : '#C1F1C3' }" >
                     <div class="table-responsive">
                         <h2 class="h2" style="font-size: 24px;">{{ m.name }} 
                          <span>
@@ -228,6 +376,7 @@
                                         Employee Only
                                     </th>
                                     <td>
+                                        <span *ngIf="data.user.role=='sadmin'||data.user.role=='user'">
                                         <input 
                                         style="max-width: 200px;" 
                                         type="text" 
@@ -235,6 +384,10 @@
                                         id="contribution_level_id" 
                                         name="contribution_level_id" 
                                         [(ngModel)]="data.colForm['employee_'+m.id]">
+                                        </span>
+                                        <span *ngIf="data.user.role=='badmin'||data.user.role=='broker'">
+                                            {{ data.colForm['employee_'+m.id] }}
+                                        </span>
                                     </td>
                                 </tr>    
                                 <tr>
@@ -242,6 +395,7 @@
                                         Employee / Spouse
                                     </th>
                                     <td>
+                                        <span *ngIf="data.user.role=='sadmin'||data.user.role=='user'">
                                         <input 
                                         style="max-width: 200px;" 
                                         type="text" 
@@ -249,6 +403,10 @@
                                         id="contribution_level_id" 
                                         name="contribution_level_id" 
                                         [(ngModel)]="data.colForm['employeespouse_'+m.id]">
+                                        </span>
+                                        <span *ngIf="data.user.role=='badmin'||data.user.role=='broker'">
+                                            {{ data.colForm['employeespouse_'+m.id] }}
+                                        </span>
                                     </td>
                                 </tr>   
                                 <tr>
@@ -256,6 +414,7 @@
                                         Employee / Children
                                     </th>
                                     <td>
+                                        <span *ngIf="data.user.role=='sadmin'||data.user.role=='user'">
                                         <input 
                                         style="max-width: 200px;" 
                                         type="text" 
@@ -263,6 +422,10 @@
                                         id="contribution_level_id" 
                                         name="contribution_level_id" 
                                         [(ngModel)]="data.colForm['employeechildren_'+m.id]">
+                                        </span>
+                                        <span *ngIf="data.user.role=='badmin'||data.user.role=='broker'">
+                                            {{ data.colForm['employeechildren_'+m.id] }}
+                                        </span>
                                     </td>
                                 </tr>   
                                 <tr>
@@ -270,6 +433,7 @@
                                         Family
                                     </th>
                                     <td>
+                                        <span *ngIf="data.user.role=='sadmin'||data.user.role=='user'">
                                         <input 
                                         style="max-width: 200px;" 
                                         type="text" 
@@ -277,6 +441,10 @@
                                         id="contribution_level_id" 
                                         name="contribution_level_id" 
                                         [(ngModel)]="data.colForm['family_'+m.id]">
+                                        </span>
+                                        <span *ngIf="data.user.role=='badmin'||data.user.role=='broker'">
+                                            {{ data.colForm['family_'+m.id] }}
+                                        </span>
                                     </td>
                                 </tr>   
                                 <tr style="background-color: lawngreen;" *ngIf="data.colForm['message_'+m.id]!=''">

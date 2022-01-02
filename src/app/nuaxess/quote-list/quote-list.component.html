@@ -99,9 +99,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Quote</th>
                                 <th>Request Date</th>
                                 <th>Organization</th>
-                                <th>Prospect</th>
+                                <th>Company / Prospect</th>
                                 <th>Contact Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
@@ -112,7 +113,8 @@
                         <tbody>
                             <tr *ngFor="let m of data | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
                                 <td>{{ m.id }}</td>
-                                <td>{{ m.request_date }}</td>
+                                <td>{{ m.quote_key }}</td>
+                                <td>{{ m.date_sent }}</td>
                                 <td>{{ m.ord_name }}</td>
                                 <td>{{ m.company_name }}</td>
                                 <td>{{ m.contact_name }}</td>

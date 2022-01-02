@@ -118,34 +118,17 @@
  &nbsp;
         </div>
         <div class="col-md-12 col-xl-3">
-            <div class="card card-body">            
-                <div class="row">
-                    <div class="col-12">
-                        <button class="btn btn-warning" [routerLink]="['/edit-company',data.id]">Edit Company</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-</div>
-</div>
-<div class="row">
-<div class="table table-responsive">
+            <div class="card card-body">  
+                <h2 style="font-size: 24px;"><b>{{ data.company_name }}</b></h2>          
+<div class="table-responsive">
+    <table class="table table-responsive">
     <thead>
-
-    </thead>
-    <tbody>
         <tr>
-            <th>&nbsp;</th>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <th>ID:</th>
+            <th>Company ID:</th>
             <td>{{ data.id }}</td>
         </tr>
-        <tr>
-            <th>Company Name:</th>
-            <td>{{ data.company_name }}</td>
-        </tr>
+    </thead>
+    <tbody>
         <tr>
             <th>Company Type:</th>
             <td>{{ data.company_type }}</td>
@@ -194,182 +177,70 @@
             <th>Description:</th>
             <td>{{ data.dsc }}</td>
         </tr>
+        <tr>
+            <th></th>
+            <td><button class="btn btn-warning" [routerLink]="['/edit-company',data.id]">Edit Company</button></td>
+        </tr>
     </tbody>
-</div>
+</table>
 </div>
             </div>
         </div>
-        <div class="col-md-12 col-xl-7">
+<div class="col-md-12 col-xl-3">
 <div *ngFor="let n of data.quotes" class="card card-body">
     <h2 style="font-size: 24px;"><b>Quotes</b></h2>
-    <div class="container" style="margin-top:10px;">
             <div class="table-responsive">
-                <div class="row">
-                    <div class="col-xl-11>">
-
-                <div class="row">
-                    <div class="col-xl-2">
-                        ID:
-                    </div>
-                    <div class="col-xl-9">
-                        {{ n.id }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-2">
-                        Quote:
-                    </div>
-                    <div class="col-xl-9">
-                        {{ n.quote_key }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-2">
-                        Quote Name:
-                    </div>
-                    <div class="col-xl-9">
-                        {{ n.name }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-2">
-                        Exipres:
-                    </div>
-                    <div class="col-xl-9">
-                        {{ n.expiry_date }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-2">
-                        Status:
-                    </div>
-                    <div class="col-xl-9">
-                        {{ n.status }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-2">
-                        &nbsp;
-                    </div>
-                    <div class="col-xl-9">
-                    </div>
-                </div>
-                <div class="row">
-
-<div class="table-responsive">
-                <table class="table table-responsive table-striped">
+                <table class="table table-responsive">
                     <thead>
                         <tr>
-                            <th>
-                                Product
-                            </th>
-                            <th>
-                                Plan
-                            </th>
-                            <th>
-                                Employee
-                            </th>
-                            <th>
-                                Employee & Spouse
-                            </th>
-                            <th>
-                                Employee & Children
-                            </th>
-                            <th>
-                                Family
-                            </th>
+                            <th style="width: 200px !important">Quote ID</th>
+                            <td>{{ n.quote_key }}</td>
                         </tr>
                     </thead>
                     <tbody>
-            <tr *ngFor="let m of n.plans">
-                <td>
-                    {{ m.plan_type }}
-                </td>                
-                <td>
-                    {{ m.name }}
-                </td>
-                <td>
-                    {{ m.employee }}
-                </td>
-                <td>
-                    {{ m.employee_spouse }}
-                </td>
-                <td>
-                    {{ m.employee_children }}
-                </td>
-                <td>
-                    {{ m.family }}
-                </td>
-                <td>
-                    {{ m.vision }}
-                </td>
-                <td>
-                    {{ m.status }}
-                </td>
-            </tr>
+                        <tr><th style="width: 100px !important">ID:</th><td style="max-width: 100px">{{ n.id }}</td>
+                        </tr>
+                        <tr><th style="width: 200px !important">Name:</th><td style="max-width: 100px">{{ n.quote_name }}</td></tr>
+                        <tr><th style="width: 200px !important">Created:</th><td style="max-width: 100px">{{ n.create_timestamp }}</td></tr>
+                        <tr><th style="width: 200px !important">Requested By:</th><td style="max-width: 100px">{{ n.requested_by }}</td></tr>
+                        <tr><th style="width: 200px !important">Employee Count:</th><td style="max-width: 100px">{{ n.employee_count }}</td></tr>
+                        <tr><th style="width: 200px !important">Medical:</th><td style="max-width: 100px">{{ n.medical }}</td></tr>
+                        <tr><th style="width: 200px !important">Dental:</th><td style="max-width: 100px">{{ n.dental }}</td></tr>
+                        <tr><th style="width: 200px !important">Vision:</th><td style="max-width: 100px">{{ n.vision }}</td></tr>
+                        <tr><th style="width: 200px !important">Contact Name:</th><td style="max-width: 100px">{{ n.contact_name }}</td></tr>
+                        <tr><th style="width: 200px !important">Contact Phone:</th><td style="max-width: 100px">{{ n.contact_phone }}</td></tr>
+                        <tr><th style="width: 200px !important">Contact Email:</th><td style="max-width: 100px">{{ n.contact_email }}</td></tr>
+                        <tr><th style="width: 200px !important">Expires:</th><td style="max-width: 100px">{{ n.date_expires }}</td></tr>
+                        <tr><th style="width: 200px !important">Status:</th><td style="max-width: 100px">{{ n.status }}</td></tr>
+                        <tr><th style="width: 200px !important">Notes:</th><td style="max-width: 100px">{{ n.notes }}</td></tr>
+                        <tr><th style="width: 200px !important"></th><td><button [routerLink]="['/quote-request-dashboard',n.id]" 
+                            class="btn btn-warning">View / Edit</button></td>
+                        </tr>
                     </tbody>
                 </table>
-                </div>
-                </div>
-            </div>
             </div>
 </div>
+<button *ngIf="data.quotes.length==0" [routerLink]="['/add-quote-request',data.id]" class="btn btn-warning" [routerLink]="['/add-quote-request',data.id]">Request New Quote</button>
 </div>
-</div>
-<button  [routerLink]="['/add-quote-request',data.id]" class="btn btn-warning" [routerLink]="['/add-quote-request',data.id]">Request New Quote</button>
-<div class="card card-body" style="margin-top:20px;">            
-
-    <div class="row">
-        <h2 style="font-size: 24px;"><b>Documents</b></h2>
-    <div class="table table-responsive">
+<div class="col-md-12 col-xl-4" *ngIf="data.quotes.length>0">
+    <div class="card card-body">
+        <h2 style="font-size: 24px;"><b>Contribution Levels</b></h2>
+        <div class="table-responsive">
+        <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th></th>
-            </tr>        
-        </thead>
-        <tbody>
-      <!--      <tr>
-                <th>{{ data.docments.id }}</th>
-                <td>{{ data.document_name }}</td>
-            </tr> -->
-        </tbody>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-primary" [routerLink]="['/edit-company',data.id]">Upload Document</button>
-        </div>
-    </div>
-</div>
-<div class="card card-body" style="margin-top:20px;">            
-
-    <div class="row">
-        <h2 class="h2" style="font-size: 24px;"><b>Contribution Levels</b></h2>
-    <div class="table table-responsive">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Class Level</th>
-                <th>Plan</th>
-                <th>Coverage Level</th>
+                <th>Class</th>
+                <th>Level</th>
                 <th>Type</th>
                 <th>Value</th>
-                <th>Is Custom</th>
+                <th>Custom</th>
                 <th></th>
             </tr>        
         </thead>
         <tbody>
             <tr *ngFor="let m of data.contribution_levels">
                 <td>
-                    {{ m.id }}
-                </td>
-                <td>
                     {{ m.class_level }}
-                </td>
-                <td>
-                    {{ m.applicable_plan }}
                 </td>
                 <td>
                     {{ m.coverage_level }}
@@ -384,11 +255,11 @@
                     {{ m.is_custom }}
                 </td>
                 <th>
-                    <button (click)="editLevel(m.id,m.class_level,m.applicable_plan,m.coverage_level,m.value,m.type)" class="btn btn-primary">View/Edit</button>
+                    <button (click)="editLevel(m.id,m.class_level,m.applicable_plan,m.coverage_level,m.value,m.type)" class="btn btn-primary">Edit</button>
                 </th>
             </tr>
                     </tbody>
-    </div>
+                </table>
     </div>
     <div *ngIf="addcont=='N'" class="row">
         <div class="col-12">
@@ -493,7 +364,7 @@
         <div class="col-md-12 col-xl-10">
             <div class="card card-body" style="margin-top:20px;">
                 <div class="table-responsive">
-                    <h2 style="font-size: 24px;"><b>Employees</b></h2>
+                    <h2 style="font-size: 24px;"><b>Employees (Included in Quote)</b></h2>
                 <div class="col-lg-6 py-2">
                     Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
                 </div>
@@ -561,7 +432,10 @@
                     {{ m.employee_status }}
                 </td>
                 <td>
-                    <button  [routerLink]="['/employee-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
+                    <button  [routerLink]="['/employee-dashboard',m.id]" class="btn btn-primary">Edit</button>
+                </td>
+                <td>
+                    <button  [routerLink]="['/employee-dashboard',m.id]" class="btn btn-warning">Dashboard</button>
                 </td>
             </tr>
         </tbody>
@@ -569,109 +443,75 @@
                 <paging-controls (pageChange)="p = $event" [isItemsPerPage]="false"  
                 class="my-pagination"></paging-controls>
 
-                <div *ngIf="adding=='Y'">
-                    <form class="flex flex-col mt-8 p-8 pb-4 bg-card rounded-2xl shadow overflow-hidden">
-                        <div class="flex flex-col gt-xs:flex-row">
-                            <mat-form-field style="max-width:430px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>First Name</mat-label>
-                                <input  matInput id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['first_name']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field style="max-width:430px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>Middle Name</mat-label>
-                                <input  matInput id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['middle_name']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field style="max-width:430px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>Last Name</mat-label>
-                                <input  matInput id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['last_name']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field style="max-width:430px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>Suffix</mat-label>
-                                <input  matInput id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['suffix']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field style="max-width:430px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>Email</mat-label>
-                                <input  matInput id="email" name="email" [(ngModel)]="data.employeeData['email']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field  style="max-width:180px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pl-3">
-                                <mat-label>Mobile Phone</mat-label>
-                                <input matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.employeeData['phone_mobile']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field  style="max-width:180px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pl-3">
-                                <mat-label>Date of Birth (MM/DD/YY)</mat-label>
-                                <input matInput id="dob" name="dob" [(ngModel)]="data.employeeData['date_of_birth']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
-                            <mat-form-field  style="max-width:180px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pl-3">
-                                <mat-label>Social Security Number</mat-label>
-                                <input matInput id="dob" name="dob" [(ngModel)]="data.employeeData['social_security_number']">
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matSuffix
-                                    [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                            </mat-form-field>
+                <div *ngIf="adding=='Y'" style="background-color: lightcyan;">
+                    <h2 style="font-size: 18px;">Add/Edit Employee</h2>
+                    <form>
+                        <div class="row p-5">
+                            <div class="col-xl-3">
+                            <label>First Name</label>
+                            <div class="form-control">
+                                <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['first_name']">
+                            </div>
+                            </div>
+                            <div class="col-xl-3">
+                                <label>Middle Name</label>
+                                <div class="form-control">
+                                    <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['middle_name']">
+                                </div>
+                            </div>
+                            <div class="col-xl-3">
+                                    <label>Last Name</label>
+                                    <div class="form-control">
+                                        <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['last_name']">
+                                    </div>
+                            </div>
+                            <div class="col-xl-3">
+                                <label>Suffix</label>
+                                <div class="form-control">
+                                    <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['suffix']">
+                                </div>
                         </div>
-                        <div class="flex flex-col gt-xs:flex-row">
-                            <mat-form-field  style="max-width:180px !important;"
-                                [ngClass]="formFieldHelpers"
-                                class="flex-auto gt-xs:pr-3">
-                                <mat-label>Gender</mat-label>
-                                <mat-select  id="gender" name="gender" [(ngModel)]="data.employeeData['gender']">
-                                    <mat-option value="Male">Male</mat-option>
-                                    <mat-option value="Female">Female</mat-option>
-                                    <mat-option value="Non-binary">Non-binary</mat-option>
-                                </mat-select>
-                                <mat-icon
-                                    class="icon-size-5"
-                                    matPrefix
-                                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                            </mat-form-field>
                         </div>
-                        <div class="flex flex-col gt-xs:flex-row">
+                        <div class="row  p-5">
+                            <div class="col-xl-3">
+                                <label>Email</label>
+                                <div class="form-control">
+                                    <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['email']">
+                                </div>
                         </div>
-                        <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
+                        <div class="col-xl-3">
+                            <label>Mobile Phone</label>
+                            <div class="form-control">
+                                <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['phone_mobile']">
+                            </div>
+                        </div>
+                        <div class="col-xl-3">
+                            <label>Date of Birth (MM/DD/YYYY)</label>
+                            <div class="form-control">
+                                <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['date_of_birth']">
+                            </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <label>Social Security Number</label>
+                        <div class="form-control">
+                            <input  type="text" id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['social_security_number']">
+                        </div>
+                </div>
+                
+                        </div>
+                <div class="row  p-5">
+                    <div class="col-xl-3">
+                        <label>Gender</label>
+                        <div class="form-control">
+                            <select id="employee_name" name="employee_name" [(ngModel)]="data.employeeData['gender']">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Non-binary">Non-binary</option>
+                           </select>
+                        </div>
+                    </div>
+                        <div class="col-xl-3  p-5">
+                    
                             <button mat-button 
                             [color]="'danger'"
                             (click)="deleteForm()">
@@ -686,6 +526,8 @@
                                 [color]="'primary'" (click)="postEmployee()">
                                 Save
                             </button>
+                   
+                        </div>
                         </div>
                     </form>
                 </div>

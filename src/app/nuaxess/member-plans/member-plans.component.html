@@ -76,7 +76,7 @@
 <!--- THIS IS MOVED INSIDE THE MAIN SECTION AFTER THE FIRST LINE -->
     <!-- Header -->
     <div class="col-xl-7">
-        <div style="margin-top: 10px !important; margin-left: 20px !important;">
+        <div style="margin-top: 10px !important;">
             <a class="inline-flex items-center leading-6 text-primary hover:underline" [routerLink]="['/dashboard']"><span class="inline-flex items-center"><mat-icon role="img" class="mat-icon notranslate icon-size-5 text-current mat-icon-no-color" aria-hidden="true" data-mat-icon-type="svg" data-mat-icon-name="arrow-sm-left" data-mat-icon-namespace="heroicons_solid"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" fit="" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" focusable="false">
                 <path fill-rule="evenodd" d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path>
             </svg></mat-icon><span class="ml-1.5 font-medium leading-5">Back to Dashboard</span></span></a>
@@ -87,8 +87,13 @@
 <!--    <div class="flex-auto p-6 sm:p-10"> -->
     <div class="col-lg-12">
 <!--       <div class="max-w-3xl"> -->
-            <div class="prose prose-sm max-w-3xl">
+            <div class="row">
+                <div class="col-xl-1">
+
+                </div>
+                <div class="col-xl-11">
                 <h2>Available Plans</h2>
+            </div>
             </div>
             <div class="row">
                 <div class="col-xl-4">
@@ -108,9 +113,10 @@
                         <h2 style="font-size:20px;"><b>Plan Options</b></h2>
                     </div>
                 </div>
-<div class="row">    
-    <div class="col-xl-4" *ngFor="let m of data.plans">
-            <fuse-card  *ngIf="m.level==coverage||coverage==''" style="margin-bottom: 40px;"
+<div class="row">   
+    <ng-container  *ngFor="let m of data.plans">
+    <div class="col-xl-4" *ngIf="m.level==coverage||coverage==''">
+            <fuse-card   style="margin-bottom: 40px;"
                 class="flex-col md:max-w-none p-6 sm:py-12 sm:px-10 ring-2 ring-primary overflow-visible ng-star-inserted">
                     <div class="absolute inset-x-0 -top-4 flex items-center justify-center ng-tns-ng-star-inserted">
                         <div class="flex items-center h-8 px-8 rounded-full font-medium text-center leading-none bg-primary text-on-primary">{{ m.plan_type }}</div>
@@ -253,10 +259,9 @@ focusable="false">
 </div>
 </fuse-card>
 </div>
+</ng-container>
 </div>
 </div>
 </div>
-<div class="col-xl-5">
-
 </div>
 </div>

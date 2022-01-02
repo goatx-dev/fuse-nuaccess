@@ -116,6 +116,20 @@
                     </mat-form-field>
                     <mat-form-field
                         [ngClass]="formFieldHelpers"
+                        class="flex-auto gt-xs:pr-3">
+                        <mat-label>Type</mat-label>
+                        <mat-select  id="type" name="type" [(ngModel)]="data.formData['type']">
+                            <mat-option value="PEO">PEO</mat-option>
+                            <mat-option value="Sales">Sales</mat-option>
+                            <mat-option value="Provider">Provider</mat-option>
+                        </mat-select>
+                        <mat-icon
+                            class="icon-size-5"
+                            matPrefix
+                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+                    </mat-form-field>
+                    <mat-form-field
+                        [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pl-3">
                         <mat-label>Contact Full Name</mat-label>
                         <input matInput id="contact_full_name" name="contact_full_name" [(ngModel)]="data.formData['contact_full_name']">

@@ -96,6 +96,11 @@ import { MemberIHQComponent } from './nuaxess/member-ihq/member-ihq.component';
 import { MemberProfileComponent } from './nuaxess/member-profile/member-profile.component';
 import { MemberMedicationsComponent } from './nuaxess/member-medications/member-medications.component';
 import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insurance.component';
+import { InvalidTokenComponent } from './nuaxess/invalid-token/invalid-token.component';
+import { AddBrokerComponent } from './nuaxess/add-broker/add-broker.component';
+import { EditBrokerComponent } from './nuaxess/edit-broker/edit-broker.component';
+import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.component';
+import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -148,7 +153,12 @@ const routerConfig: ExtraOptions = {
         MemberIHQComponent,
         MemberProfileComponent,
         MemberMedicationsComponent,
-        MemberInsuranceComponent
+        MemberInsuranceComponent,
+        InvalidTokenComponent,
+        AddBrokerComponent,
+        EditBrokerComponent,
+        ForcedLogoutComponent,
+        NewSigninComponent
     ],
     imports     : [
         BrowserModule,

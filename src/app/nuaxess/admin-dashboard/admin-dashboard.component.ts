@@ -55,12 +55,15 @@ import { DataService } from 'app/data.service';
        */
       ngOnInit(): void
       {      
-
               this._activatedRoute.data.subscribe(({ 
                 data, menudata, userdata })=> { 
                 this.data=data;
                 this.navigation=menudata
                 this.user=userdata
+                if (this.data.user.force_logout>0) {
+                    localStorage.removeItem('uid');
+                    this._router.navigate(['/forced-off',this.data.user.force_logout]);
+                }
                 if (this.data.user.role=="employee") {
                     this._router.navigate(['/dashboard']);
                 }

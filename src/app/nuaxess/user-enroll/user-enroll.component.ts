@@ -49,30 +49,11 @@ export class UserEnrollComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void
     {      
-
             this._activatedRoute.data.subscribe(({ 
               data })=> { 
                 this.data=data;
+                if (this.data.error=='1') this._router.navigate(['/error'])
             }) 
-            
-            this._dataService.getVerticalMenu()
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((data: Navigation)=> {             
-                    this.navigation=data
-            })  
-    
-            this._dataService.getUser()
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((user: any)=> {             
-                    this.user=user
-            })  
-          
-            this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
-                // Check if the screen is small
-                this.isScreenSmall = !matchingAliases.includes('md');
-            });
               
     }
 
