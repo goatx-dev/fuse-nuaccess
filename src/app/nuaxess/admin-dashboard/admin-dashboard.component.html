@@ -113,6 +113,17 @@
                 </div>
             
                 <!-- Main -->
+                
+<div class="mc">
+
+    <input [formControl]="file" (change)="fileChange(index,$event)" type="file" placeholder="File">
+    <br>
+
+    <button style="margin-top:20px" (click)="uploadFile()" mat-raised-button color="primary">
+        Upload
+    </button>
+
+</div>
                 <div class="flex-auto border-t -mt-px pt-4 sm:pt-6">
                     <div class="w-full max-w-screen-xl mx-auto">
                         <!-- Tabs -->

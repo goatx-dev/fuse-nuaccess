@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
 import { ApexOptions } from 'ng-apexcharts';
 import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/components/navigation';
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
@@ -32,7 +34,7 @@ import { DataService } from 'app/data.service';
   currentYear: any;
   email: any;
   user: any;
-
+  index: any;
       /**
        * Constructor
        */
@@ -43,7 +45,8 @@ import { DataService } from 'app/data.service';
         private _navigationService: NavigationService,
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService,
-        private _dataService: DataService
+        private _dataService: DataService,
+        public http: HttpClient
     ) { }
 
       // -----------------------------------------------------------------------------------------------------
@@ -167,5 +170,49 @@ import { DataService } from 'app/data.service';
               navigation.toggle();
           }
       }
+      file=new FormControl('')
+      file_data:any=''
+      fileChange(index,event) {
+        
+        const fileList: FileList = event.target.files;
+        //check whether file is selected or not
+        if (fileList.length > 0) {
+    
+            const file = fileList[0];
+            //get file information such as name, size and type
+            console.log('finfo',file.name,file.size,file.type);
+            //max file size is 4 mb
+            if((file.size/1048576)<=4)
+            {
+              let formData = new FormData();
+              let info={id:2,name:'joetest'}
+              formData.append('file', file, file.name);
+              formData.append('id','2');
+              formData.append('tz',new Date().toISOString())
+              formData.append('update','2')
+              formData.append('info',JSON.stringify(info))
+              this.file_data=formData
+              
+            }else{
+              alert('File size exceeds 4 MB. Please choose less than 4 MB');
+            }
+            
+        }
+    
+      }
+    
+      ip="https://www.mynuaxess.com/"
+      
+      uploadFile()
+        {
+          this.http.post(this.ip+'upload.php',this.file_data)
+          .subscribe(res => {
+          //send success response
+          console.log(res.toString)
+          }, (err) => {
+          //send error response
+          console.log('Error')
+        });
+        }
   }
   
