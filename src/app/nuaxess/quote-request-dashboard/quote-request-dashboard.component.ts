@@ -59,6 +59,10 @@ this.mult='N';
 this._activatedRoute.data.subscribe(({ 
   data, menudata, userdata })=> { 
     this.data=data;
+    if (this.data.user.force_logout>0) {
+      localStorage.removeItem('uid');
+      this._router.navigate(['/forced-off',this.data.user.force_logout]);
+  }
     this.user=userdata;
     this.navigation=menudata
     console.log(data)
