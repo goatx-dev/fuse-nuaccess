@@ -22,6 +22,7 @@ export class UserEnrollComponent implements OnInit, OnDestroy {
   p: any;
   formFieldHelpers: string[] = [''];
   error: any;
+  strength: any;
 
   signUpForm: FormGroup;
   showAlert: boolean = false;
@@ -49,6 +50,7 @@ export class UserEnrollComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void
     {      
+      this.strength=0;
             this._activatedRoute.data.subscribe(({ 
               data })=> { 
                 this.data=data;
@@ -118,6 +120,10 @@ export class UserEnrollComponent implements OnInit, OnDestroy {
     postForm() {
 
       this.error="";
+      if (this.strength==0) {
+        this.error="Passwords too weak - Must be at least 8 characters, have at least 1 uppercase, 1 lowercase, and 1 special character."
+        return        
+      }
 
       if (this.data['formData']['password'].length<8) {
         this.error="Passwords too short - Must be at least 8 characters"
@@ -148,5 +154,25 @@ export class UserEnrollComponent implements OnInit, OnDestroy {
         });
 
   }
+checkPwdStrength() {
+  let password = this.data.formData['password']
+  //let password = document.getElementById('PassEntry');
+  let strengthBadge = document.getElementById('StrengthDisp');
+  let strongPassword = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})')
+  let mediumPassword = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))')
 
+if(strongPassword.test(password)) {
+    strengthBadge.style.backgroundColor = "green";
+    strengthBadge.textContent = 'Strong';
+    this.strength=1;
+} else if(mediumPassword.test(password)) {
+    strengthBadge.style.backgroundColor = 'blue';
+    strengthBadge.textContent = 'Medium';
+    this.strength=0;
+} else {
+    strengthBadge.style.backgroundColor = 'red';
+    strengthBadge.textContent = 'Weak';
+    this.strength=0;
+}
+}
 }

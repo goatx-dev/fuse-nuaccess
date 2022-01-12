@@ -34,6 +34,7 @@ import { DataService } from 'app/data.service';
   currentYear: any;
   email: any;
   user: any;
+  //Upload 
   index: any;
       /**
        * Constructor
@@ -46,7 +47,7 @@ import { DataService } from 'app/data.service';
         private _fuseMediaWatcherService: FuseMediaWatcherService,
         private _fuseNavigationService: FuseNavigationService,
         private _dataService: DataService,
-        public http: HttpClient
+        public http: HttpClient  // used by upload
     ) { }
 
       // -----------------------------------------------------------------------------------------------------
@@ -170,6 +171,11 @@ import { DataService } from 'app/data.service';
               navigation.toggle();
           }
       }
+
+      //------------------------------
+      // Upload Form
+      //------------------------------
+
       file=new FormControl('')
       file_data:any=''
       fileChange(index,event) {
@@ -181,8 +187,8 @@ import { DataService } from 'app/data.service';
             const file = fileList[0];
             //get file information such as name, size and type
             console.log('finfo',file.name,file.size,file.type);
-            //max file size is 4 mb
-            if((file.size/1048576)<=4)
+            //max file size is 8 mb
+            if((file.size/1048576)<=8)
             {
               let formData = new FormData();
               let info={id:2,name:'joetest'}
@@ -194,7 +200,7 @@ import { DataService } from 'app/data.service';
               this.file_data=formData
               
             }else{
-              alert('File size exceeds 4 MB. Please choose less than 4 MB');
+              alert('File size exceeds 8 MB. Please choose less than 8 MB');
             }
             
         }

@@ -101,6 +101,8 @@ import { AddBrokerComponent } from './nuaxess/add-broker/add-broker.component';
 import { EditBrokerComponent } from './nuaxess/edit-broker/edit-broker.component';
 import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.component';
 import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
+import { MemberLookupComponent } from './nuaxess/member-lookup/member-lookup.component';
+import { GuardianLookupComponent } from './nuaxess/guardian-lookup/guardian-lookup.component';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -158,7 +160,9 @@ const routerConfig: ExtraOptions = {
         AddBrokerComponent,
         EditBrokerComponent,
         ForcedLogoutComponent,
-        NewSigninComponent
+        NewSigninComponent,
+        MemberLookupComponent,
+        GuardianLookupComponent
     ],
     imports     : [
         BrowserModule,

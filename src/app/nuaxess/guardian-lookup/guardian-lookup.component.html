@@ -79,14 +79,19 @@
         <div class="flex-1 min-w-0">
             <div class="mt-2">
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
-                    Organization List
+                    Guardian (Dental/Vision/AD&D) Member List
+                    <div *ngIf="data.id=='org'">Organization User Account List</div>
+                    <div *ngIf="data.id=='employer'">Company / Prospect User Account List</div>
+                    <div *ngIf="data.id=='pending'">Pending User Account List</div>
+                    <div *ngIf="data.id=='members'">Employee / Member User Account List</div>
+                    <div *ngIf="data.id=='nua'">NuAxess User Account List</div>
                 </h2>
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
-        <div class="row">   
+        <div class="row">
             <div class="col-md-12">
                 <h1 style="font-size: 24px; font-weight: bold;">&nbsp; </h1>
             </div>
@@ -99,25 +104,27 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Date</th>
-                                <th>Organization</th>
-                                <th>Contact Name</th>
-                                <th>Contact Email</th>
-                                <th>Contact Phone</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Relationshp</th>
+                                <th>Company Name</th>
+                                <th>DOB</th>
+                                <th>Dental</th>
+                                <th>Vision</th>
+                                <th>AD&D</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
-                                <td>{{ m.id }}</td>
-                                <td>{{ m.create_timestamp }}</td>
-                                <td>{{ m.org_name }}</td>
-                                <td>{{ m.contact_full_name }}</td>
-                                <td>{{ m.email }}</td>
-                                <td>{{ m.phone_mobile }}</td>
-                                <td>{{ m.status }}</td>
-                                <td><button [routerLink]="['/org-dashboard',m.id]" class="btn btn-primary">View</button></td>
+                            <tr *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 100}">
+                                <td>{{ m.employee_id }}</td>
+                                <td>{{ m.last_name }}, {{ m.first_name }} {{ m.middle_name }}</td>
+                                <td>{{ m.relationship }}</td>
+                                <td>{{ m.company_name }}</td>
+                                <td>{{ m.date_of_birth }}</td>
+                                <td>{{ m.dental_elected }}</td>
+                                <td>{{ m.vision_elected }}</td>
+                                <td>{{ m.ad_d_elected }}</td>
+                                <td><button *ngIf="m.employee_id!=0&&m.relationship=='Member'" [routerLink]="['/employee-dashboard',m.employee_id]" class="btn btn-primary">View</button></td>
                             </tr>
                         </tbody>
                     </table>

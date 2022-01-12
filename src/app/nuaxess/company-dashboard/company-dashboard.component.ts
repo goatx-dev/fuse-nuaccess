@@ -8,6 +8,8 @@ import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { DataService } from 'app/data.service';
 import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
 
 @Component({
@@ -27,12 +29,15 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<any> = new Subject<any>();
     currentYear: any;
     email: any;
+      //Upload 
+  index: any;
     user: any;
     adding: any;
     addcont: any;
     employee_name: any;
     dob: any;
     editQQ: any;
+    uploading: any;
 
     /**
      * Constructor
@@ -45,12 +50,14 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
       private _fuseMediaWatcherService: FuseMediaWatcherService,
       private _fuseNavigationService: FuseNavigationService,
       private _dataService: DataService,
-      private _formBuilder: FormBuilder
+      private _formBuilder: FormBuilder,
+      public http: HttpClient  // used by upload
   ) { }
 
     ngOnInit(): void
     {      
-      this.editQQ='N'
+      this.editQQ='N';
+      this.uploading='N';
       this._activatedRoute.data.subscribe(({ 
         data, menudata, userdata })=> { 
           this.data=data;
@@ -110,6 +117,14 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
      *
      * @private
      */
+
+    showUpload() {
+      if (this.uploading=='Y') {
+        this.uploading="N";
+      } else {
+        this.uploading="Y";
+      }
+    }
 
     toggleNavigation(name: string): void
     {
@@ -208,6 +223,16 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
         });
       }
 
+      sendTestEmail() {
+        this._dataService.postForm("send-test-email", this.data['formData']).subscribe((data:any)=>{
+          if (data.error_code=="0") {
+            location.reload();
+          } else {     
+//            this.error=data.error_message
+          }
+        });
+      }
+
     postEmployee() {
       this._dataService.postForm("post-add-employee-small", this.data).subscribe((data:any)=>{
         if (data.error_code=="0") {
@@ -240,4 +265,54 @@ editQuote() {
         });
       }
 
-}
+      //------------------------------
+      // Upload Form
+      //------------------------------
+
+      file=new FormControl('')
+      file_data:any=''
+
+      fileChange(index,event) {
+        
+        const fileList: FileList = event.target.files;
+        //check whether file is selected or not
+        if (fileList.length > 0) {
+    
+            const file = fileList[0];
+            //get file information such as name, size and type
+            console.log('finfo',file.name,file.size,file.type);
+            //max file size is 8 mb
+            if((file.size/1048576)<=8)
+            {
+              let formData = new FormData();
+              let info={id:2,name:'joetest'}
+              formData.append('file', file, file.name);
+              formData.append('company_id',this.data.id);
+              formData.append('user_id',this.data.user.id);
+              formData.append('dsc','This is my File');
+//              formData.append('info',JSON.stringify(info))
+              this.file_data=formData
+              
+            }else{
+              alert('File size exceeds 8 MB. Please choose less than 8 MB');
+            }
+            
+        }
+    
+      }
+    
+      ip="https://myna-docs.com/api/"
+      
+      uploadFile()
+        {
+          this.http.post(this.ip+'upload.php',this.file_data)
+          .subscribe(res => {
+          //send success response
+          console.log(res.toString)
+          }, (err) => {
+          //send error response
+          console.log(err)
+        });
+        }
+  }
+  

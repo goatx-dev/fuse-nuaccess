@@ -352,7 +352,7 @@
             </div>
         </div>
         <div class="col-md-12 col-xl-5">
-<div class="card card-body">
+<div *ngIf="data.users.length>0" class="card card-body">
             <div class="table-responsive">
                 <div class="text-2xl font-semibold leading-tight">User Account</div>
                 <fuse-card *ngFor="let m of data.users" class="flex flex-col w-full filter-article  px-8 pt-6 pb-4  ng-star-inserted">
@@ -372,7 +372,16 @@
                 <button style="margin-left: 20px;" [routerLink]="['/add-quote-request',data.id]" class="btn btn-primary" (click)="addEmployee()">Send Notification</button>
             </div>
 </div>
-<fuse-card style="margin-top:20px;" class="flex flex-col w-full px-8 pt-6 pb-4 filter-list ng-tns-c227-452 ng-star-inserted">
+<div *ngIf="data.users.length==0" class="card card-body">
+    <div class="table-responsive">
+        <div class="text-2xl font-semibold leading-tight">User Account</div>
+        <fuse-card *ngFor="let m of data.users" class="flex flex-col w-full filter-article  px-8 pt-6 pb-4  ng-star-inserted">
+            <div class="mt-6 ng-tns-c227-444 ng-star-inserted">{{ m.phone_mobile }}</div>
+        </fuse-card>
+        <button  [routerLink]="['/edit-user',data.user_id]" class="btn btn-warning">Create User Account</button>
+    </div>
+</div>
+<fuse-card style="margin-top:20px;" class="flex flex-col w-full px-8 pt-6 pb-4 filter-list ng-tns-c227-452 ng-star-inserted" *ngIf="data.employee_status!='enrolled'"   >
     <div class="flex items-center justify-between ng-star-inserted">
         <div class="text-2xl font-semibold leading-tight">Employee Health Questionaire</div>
         <div class="-mr-3">
@@ -403,12 +412,12 @@
                         <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path>
         </svg>
     </mat-icon>
-    <div *ngIf="data.ihq_started=='No'">
+<!--   <div *ngIf="data.ihq_started=='No'">
         <b>Employee Health Questionaire Not Started</b>
     </div>
     <div *ngIf="data.ihq_started=='Yes'">
         <b>Employee Health Questionaire Started</b>
-    </div>
+    </div> -->
 </div>
 <div  *ngIf="data.information_submitted=='Yes'" class="flex mt-5">
     <mat-icon role="img" 
@@ -604,7 +613,7 @@
     <div>Medications have been submitted. 
      </div>
 </div>
-<div  *ngIf="data.ihq_started=='Yes'&&data.medications_completed=='No'" class="flex mt-5">
+<div  *ngIf="data.ihq_started=='Yes'&&data.medications_completed=='No'&&data.employee_status!='enrolled'" class="flex mt-5">
     <mat-icon role="img" 
         class="mat-icon notranslate icon-size-5 mt-0.5 mr-2 mat-icon-no-color"
         aria-hidden="true"
@@ -663,6 +672,123 @@
 </div>
 
 </fuse-card>
+<div class="card card-body" style="margin-top:20px;">            
+
+    <div class="row">
+        <h2 class="h2" style="font-size: 24px;">Documents</h2>
+    <div class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Note</th>
+                <th></th>
+            </tr>        
+        </thead>
+        <tbody>
+        <tr *ngFor="let m of data.docs" >
+                <th>{{ m.create_timestamp }}</th>
+                <td>{{ m.doc_title }}</td>
+                <td>{{ m.dsc }}</td>
+                <td><button class="btn btn-warning" (click)="showDoc(m.key)">View</button></td>
+        </tr> 
+        </tbody>
+    </div>
+    </div>
+    <div *ngIf="uploading=='N'" class="row">
+        <div class="col-12">
+            <button class="btn btn-primary" (click)="showUpload()">Upload Documents</button>
+        </div>
+    </div>
+    <div *ngIf="uploading=='Y'"  class="card card-body">
+        <h2 style="font-size: 24px;"><b>Select File to Upload</b></h2>
+        <div class="row">
+            <div class="col-xl-4"> &nbsp; </div>            
+        </div>
+        <div class="row">
+            <div class="col-xl-4">Document Type</div>
+            <div class="col-xl-4">
+            <select class="form-control" [(ngModel)]="doc_title" name="doc_title" id="doc_title">
+                <option value="Medical ID Card">Medical ID Card</option>
+                <option value="Dental/Vision ID Card">Dental / Vision ID Card</option>
+                <option value="Other">Other</option>
+            </select> 
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4">Note/Description</div>
+            <div class="col-xl-4">
+            <input type="text" class="form-control" [(ngModel)]="dsc" name="dsc" id="dsc">
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4"> &nbsp; </div>            
+        </div>
+        <div class="mc">
+            <input [formControl]="file" (change)="fileChange(index,$event)" type="file" placeholder="File">
+            <br>
+            <button style="margin-top:20px" (click)="uploadFile()" mat-raised-button color="primary">
+                Upload
+            </button>
+            <button style="margin-top:20px; margin-left:20px;" (click)="showUpload()" mat-raised-button color="primary">
+                Upload
+            </button>
+        </div>
+        </div>
+
+</div>
+<div class="card card-body"  style="margin-top:20px;">
+    <div class="table-responsive">
+        <h2 class="h2" style="font-size: 24px;">Benefits</h2>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Coverage
+                    </th>
+                    <th>
+                        Premium
+                    </th>
+                    <th>
+                        Contribution
+                    </th>
+<!--                 <th>
+    
+                    </th> -->
+                </tr>
+            </thead>
+            <tbody>
+    <tr *ngFor="let m of data.plans">
+        <td>
+            {{ m.plan_id }}
+        </td>
+        <td>
+            {{ m.plan_dsc }}
+        </td>
+        <td>
+            {{ m.plan_type }}
+        </td>
+        <td>
+            {{ m.peo_premium }}
+        </td>
+        <td>
+            {{ m.employee_contrib }}
+        </td>
+<!--    <th>
+            <button [routerLink]="['/active-plan-dashboard',m.id]" class="btn btn-primary">View/Edit</button>
+        </th> -->
+    </tr>
+            </tbody>
+        </table>
+     </div>
+</div>
+
 <div class="card card-body"  style="margin-top:20px;">
     <div class="table-responsive">
         <h2 class="h2" style="font-size: 24px;">Family</h2>
@@ -701,7 +827,7 @@
             {{ m.gender }}
         </td>
         <td>
-            {{ m.member_type }}
+            {{ m.relation_to_insured }}
         </td>
         <td>
             {{ m.date_of_birth }}
@@ -824,36 +950,9 @@
     </div>
 </div>
 
-<div class="card card-body" style="margin-top:20px;">            
-
-    <div class="row">
-        <h2 class="h2" style="font-size: 24px;">Documents</h2>
-    <div class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th></th>
-            </tr>        
-        </thead>
-        <tbody>
-      <!--      <tr>
-                <th>{{ data.docments.id }}</th>
-                <td>{{ data.document_name }}</td>
-            </tr> -->
-        </tbody>
-    </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <button class="btn btn-primary" [routerLink]="['/edit-company',data.id]">Upload Document</button>
-        </div>
-    </div>
-</div>
-
         </div>
     </div> <!-- ROW -->
-    <div class="row">
+    <div *ngIf="data.employee_status!='enrolled'" class="row">
         <div class="col-xl-2"></div>
         <div class="col-xl-10">
             <div class="row">

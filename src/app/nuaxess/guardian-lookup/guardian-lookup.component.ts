@@ -8,18 +8,19 @@ import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { DataService } from 'app/data.service';
 import { FormBuilder } from '@angular/forms';
+
+
 @Component({
-  selector: 'app-user-dashboard',
-  templateUrl: './user-dashboard.component.html',
-  styleUrls: ['./user-dashboard.component.scss']
+  selector: 'app-guardian-lookup',
+  templateUrl: './guardian-lookup.component.html',
+  styleUrls: ['./guardian-lookup.component.scss']
 })
-export class UserDashboardComponent implements OnInit, OnDestroy {
+export class GuardianLookupComponent implements OnInit, OnDestroy {
   navigation: Navigation;
   isScreenSmall: boolean;
   term: any;
   p: any;
   formFieldHelpers: string[] = [''];
-  adding: any;
 
     data: any;
     selectedProject: string = 'ACME Corp. Backend App';
@@ -44,7 +45,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void
     {      
-            
+
             this._activatedRoute.data.subscribe(({ 
               data, menudata, userdata })=> { 
                 this.data=data;
@@ -56,13 +57,25 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
                 this.navigation=menudata
                 console.log(data)
             }) 
+            
+//            this._dataService.getVerticalMenu()
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe((data: Navigation)=> {             
+//                    this.navigation=data
+//            })  
+    
+//            this._dataService.getUser()
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe((user: any)=> {             
+//                    this.user=user
+//            })  
           
-            this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
-                // Check if the screen is small
-                this.isScreenSmall = !matchingAliases.includes('md');
-            });
+//            this._fuseMediaWatcherService.onMediaChange$
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe(({matchingAliases}) => {
+//                // Check if the screen is small
+//                this.isScreenSmall = !matchingAliases.includes('md');
+//            });
               
     }
 
@@ -121,57 +134,7 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
         return this.formFieldHelpers.join(' ');
     }
 
-    notifySMS() {
-      if (confirm("Are you sure you want to send this invitation using SMS?")) {
-
-
-      this._dataService.postForm("send-invite", this.data).subscribe((data:any)=>{
-        if (data.error_code=="0") {
-              alert('SMS Message Sent')
-        } else {     
-          alert('ERROR: SMS Message WAS NOT Sent!')
-        }
-      });
-    
-    }
-
-    }
-
-    notifyEmail() {
-
-      if (confirm("Are you sure you want to send this invitation using Email?")) {
-
-        this._dataService.postForm("admin-invite", this.data).subscribe((data:any)=>{
-          if (data.error_code=="0") {
-                alert('Email Message Sent')
-          } else {     
-            alert('ERROR: Email Message WAS NOT Sent!')
-          }
-        });
-      
-      }
-
-    }
   
-    notifyBrokerEmail() {
-
-      if (confirm("Are you sure you want to send this invitation using Email?")) {
-
-        this._dataService.postForm("broker-admin-invite", this.data).subscribe((data:any)=>{
-          if (data.error_code=="0") {
-                location.reload()
-          } else {     
-            alert('ERROR: Email Message WAS NOT Sent!')
-          }
-        });
-      
-      }
-
-    }
-
-    addEmployee () {
-
-    }
     postForm() {
         this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
@@ -181,4 +144,5 @@ export class UserDashboardComponent implements OnInit, OnDestroy {
           }
         });
       }
+
 }

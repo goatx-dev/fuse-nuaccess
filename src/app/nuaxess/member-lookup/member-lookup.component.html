@@ -79,14 +79,19 @@
         <div class="flex-1 min-w-0">
             <div class="mt-2">
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
-                    Organization List
+                    APA (Medical) Member List
+                    <div *ngIf="data.id=='org'">Organization User Account List</div>
+                    <div *ngIf="data.id=='employer'">Company / Prospect User Account List</div>
+                    <div *ngIf="data.id=='pending'">Pending User Account List</div>
+                    <div *ngIf="data.id=='members'">Employee / Member User Account List</div>
+                    <div *ngIf="data.id=='nua'">NuAxess User Account List</div>
                 </h2>
             </div>
         </div>
     </div>
 
     <div class="container-fluid">
-        <div class="row">   
+        <div class="row">
             <div class="col-md-12">
                 <h1 style="font-size: 24px; font-weight: bold;">&nbsp; </h1>
             </div>
@@ -99,25 +104,29 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Date</th>
-                                <th>Organization</th>
-                                <th>Contact Name</th>
-                                <th>Contact Email</th>
-                                <th>Contact Phone</th>
-                                <th>Status</th>
+                                <th>Name</th>
+                                <th>Company</th>
+                                <th>DOB</th>
+                                <th>Dependent</th>
+                                <th>Plan</th>
+                                <th>Coverage Level</th>
+                                <th>Effective Date</th>
+                                <th>APA Id</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 25}">
+                            <tr *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 100}">
                                 <td>{{ m.id }}</td>
-                                <td>{{ m.create_timestamp }}</td>
-                                <td>{{ m.org_name }}</td>
-                                <td>{{ m.contact_full_name }}</td>
-                                <td>{{ m.email }}</td>
-                                <td>{{ m.phone_mobile }}</td>
-                                <td>{{ m.status }}</td>
-                                <td><button [routerLink]="['/org-dashboard',m.id]" class="btn btn-primary">View</button></td>
+                                <td>{{ m.last_name }}, {{ m.first_name }} {{ m.middle_name }}</td>
+                                <td>{{ m.company_name }}</td>
+                                <td>{{ m.dob }}</td>
+                                <td>{{ m.dependent }}</td>
+                                <td>{{ m.plan }}</td>
+                                <td>{{ m.coverage_level }}</td>
+                                <td>{{ m.eff_dt }}</td>
+                                <td>{{ m.apa_employee_id }}</td>
+                                <td><button *ngIf="m.dependent=='N'" [routerLink]="['/employee-dashboard',m.employee_id]" class="btn btn-primary">View</button></td>
                             </tr>
                         </tbody>
                     </table>

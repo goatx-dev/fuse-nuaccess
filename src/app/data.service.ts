@@ -13,7 +13,8 @@ export class DataService {
   role: any;
 
   constructor(private http: HttpClient) { 
-      this.url='https://quadm.tech/data/';
+//      this.url='https://quadm.tech/data/';
+        this.url='https://myna-api.com/api/';
     }
 
   getLocalStorage() {
@@ -85,7 +86,8 @@ export class DataService {
       "role": this.role
     }
 
-  this.t= this.http.post("https://quadm.tech/data/k.php", data);
+//  this.t= this.http.post("https://quadm.tech/data/k.php", data);
+  this.t= this.http.post("https://myna-api.com/api/k.php", data);
   return this.t;
 
   }
@@ -98,7 +100,8 @@ export class DataService {
       "role": this.role
     }
 
-  this.t= this.http.post("https://quadm.tech/data/u.php", data);
+  //this.t= this.http.post("https://quadm.tech/data/u.php", data);
+  this.t= this.http.post("https://myna-api.com/api/u.php", data);
   return this.t;
 
   }
@@ -111,7 +114,8 @@ export class DataService {
       "token": token
     }
 
-  this.t= this.http.post("https://quadm.tech/data/enroll.php", data);
+  //this.t= this.http.post("https://quadm.tech/data/enroll.php", data);
+  this.t= this.http.post("https://myna-api.com/api/enroll.php", data);
   return this.t;
 
   }

@@ -35,20 +35,24 @@
                         below so we can find your account.
                     </p>
                     <p *ngIf="data.error==0">Welcome to My NuAxess.  In order to use your account you must create a 
-                        password and confirm you information.
+                        password and confirm you information.  Your password must be at least 8 characters long, have at least 1 uppercase,
+                        1 lowercase, and 1 special character.
                     </p>
                 </div>
                 <div class="flex flex-col gt-xs:flex-row">
+                    <span style="height:20px;" id="StrengthDisp" class="badge displayBadge">Weak</span>
+                    <br>
                 <mat-form-field
                     [ngClass]="formFieldHelpers"
                     class="flex-auto gt-xs:pl-3">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" id="password" name="password" [(ngModel)]="data.formData['password']">
+                    <input matInput type="password" id="password" name="password" (keyup)="checkPwdStrength()" [(ngModel)]="data.formData['password']">
                     <mat-icon
                         class="icon-size-5"
                         matSuffix
                         [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
                 </mat-form-field>
+
                 <mat-form-field
                     [ngClass]="formFieldHelpers"
                     class="flex-auto gt-xs:pl-3">
@@ -76,7 +80,7 @@
                         [ngClass]="formFieldHelpers"
                         class="flex-auto gt-xs:pr-3">
                         <mat-label>Mobile Phone</mat-label>
-                        <input *ngIf="data.formData['id']!=''" disabled matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
+                        <input *ngIf="data.formData['id']!=''" matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
                         <input *ngIf="data.formData['id']==''" matInput id="phone_mobile" name="phone_mobile" [(ngModel)]="data.formData['phone_mobile']">
                         <mat-icon
                             class="icon-size-5"

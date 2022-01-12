@@ -47,6 +47,8 @@ import { MemberInsuranceComponent } from './nuaxess/member-insurance/member-insu
 import { InvalidTokenComponent } from './nuaxess/invalid-token/invalid-token.component';
 import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.component';
 import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
+import { MemberLookupComponent } from './nuaxess/member-lookup/member-lookup.component';
+import { GuardianLookupComponent } from './nuaxess/guardian-lookup/guardian-lookup.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -158,6 +160,8 @@ export const appRoutes: Route[] = [
             {path: 'edit-quote-request/:id', component: EditQuoteComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'employee-ihq/:id', component: EmployeeIHQComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'active-plan-dashboard/:id', component: ActivePlanDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'member-lookup', component: MemberLookupComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'guardian-lookup', component: GuardianLookupComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'enroll/:id', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
             {path: 'enroll', component: UserEnrollComponent, resolve: { data: EnrollResolver }, }
         ]
