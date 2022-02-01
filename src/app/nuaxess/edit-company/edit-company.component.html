@@ -210,11 +210,10 @@
                         [ngClass]="formFieldHelpers"
                         class="fuse-mat-textarea flex-auto">
                         <mat-label>Address</mat-label>
-                        <textarea
+                        <input
                             matInput
-                            [rows]="3"
                             matTextareaAutosize
-                            id="address" name="adddress" [(ngModel)]="data.formData['address']"></textarea>
+                            id="address" name="address" [(ngModel)]="data.formData['address']">
                         <mat-icon
                             class="icon-size-5"
                             matSuffix
@@ -278,6 +277,8 @@
                             <mat-option value="prospect">Prospect</mat-option>
                             <mat-option value="enrolling">Enrolling</mat-option>
                             <mat-option value="enrolled">Enrolled</mat-option>
+                            <mat-option value="terminated">Terminated</mat-option>
+                            <mat-option value="deleted">Request Delete</mat-option>
                         </mat-select>
                         <mat-icon
                             class="icon-size-5"
@@ -299,6 +300,16 @@
                             [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
                     </mat-form-field>
                 </div>
+                <mat-form-field
+                [ngClass]="formFieldHelpers"
+                class="flex-auto gt-md:pr-3">
+                <mat-label>APA Client ID</mat-label>
+                <input matInput  id="apa_client_id" name="apa_client_id" [(ngModel)]="data.formData['apa_client_id']">
+                <mat-icon
+                    class="icon-size-5"
+                    matSuffix
+                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
+            </mat-form-field>
                 <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
                     <button [routerLink]="['/company-dashboard',data['formData'].id]" mat-button>
                         Cancel

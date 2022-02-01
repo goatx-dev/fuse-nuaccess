@@ -13,11 +13,11 @@ import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
 
 @Component({
-  selector: 'app-company-dashboard',
-  templateUrl: './company-dashboard.component.html',
-  styleUrls: ['./company-dashboard.component.scss']
+  selector: 'app-apa-company-dashboard',
+  templateUrl: './apa-company-dashboard.component.html',
+  styleUrls: ['./apa-company-dashboard.component.scss']
 })
-export class CompanyDashboardComponent implements OnInit, OnDestroy {
+export class ApaCompanyDashboardComponent implements OnInit, OnDestroy {
   navigation: Navigation;
   isScreenSmall: boolean;
   term: any;

@@ -10,11 +10,11 @@ import { DataService } from 'app/data.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  selector: 'app-invoice-list',
+  templateUrl: './invoice-list.component.html',
+  styleUrls: ['./invoice-list.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class InvoiceListComponent implements OnInit, OnDestroy {
   navigation: Navigation;
   isScreenSmall: boolean;
   term: any;
@@ -27,7 +27,6 @@ export class EditUserComponent implements OnInit {
     currentYear: any;
     email: any;
     user: any;
-    error: any;
 
     /**
      * Constructor
@@ -46,24 +45,36 @@ export class EditUserComponent implements OnInit {
     ngOnInit(): void
     {      
 
-      this._activatedRoute.data.subscribe(({ 
-        data, menudata, userdata })=> { 
-          this.data=data;
-          if (this.data.user.force_logout>0) {
-            localStorage.removeItem('uid');
-            this._router.navigate(['/forced-off',this.data.user.force_logout]);
-        }
-          this.user=userdata;
-          this.navigation=menudata
-          console.log(data)
-      }) 
-                      
-            this._fuseMediaWatcherService.onMediaChange$
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe(({matchingAliases}) => {
-                // Check if the screen is small
-                this.isScreenSmall = !matchingAliases.includes('md');
-            });
+            this._activatedRoute.data.subscribe(({ 
+              data, menudata, userdata })=> { 
+                this.data=data;
+                if (this.data.user.force_logout>0) {
+                  localStorage.removeItem('uid');
+                  this._router.navigate(['/forced-off',this.data.user.force_logout]);
+              }
+                this.user=userdata;
+                this.navigation=menudata
+                console.log(data)
+            }) 
+            
+//            this._dataService.getVerticalMenu()
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe((data: Navigation)=> {             
+//                    this.navigation=data
+//            })  
+    
+//            this._dataService.getUser()
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe((user: any)=> {             
+//                    this.user=user
+//            })  
+          
+//            this._fuseMediaWatcherService.onMediaChange$
+//            .pipe(takeUntil(this._unsubscribeAll))
+//            .subscribe(({matchingAliases}) => {
+//                // Check if the screen is small
+//                this.isScreenSmall = !matchingAliases.includes('md');
+//            });
               
     }
 
@@ -124,9 +135,9 @@ export class EditUserComponent implements OnInit {
 
   
     postForm() {
-        this._dataService.postForm("post-edit-user", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-add-org", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
-            this._router.navigate(['/user-dashboard',data.id])
+            this._router.navigate(['/org-dashboard',data.id])
           } else {     
 //            this.error=data.error_message
           }

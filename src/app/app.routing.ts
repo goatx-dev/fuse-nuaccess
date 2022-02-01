@@ -49,6 +49,12 @@ import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.com
 import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
 import { MemberLookupComponent } from './nuaxess/member-lookup/member-lookup.component';
 import { GuardianLookupComponent } from './nuaxess/guardian-lookup/guardian-lookup.component';
+import { EmployeeLookupComponent } from './nuaxess/employee-lookup/employee-lookup.component';
+import { AddInvoiceComponent } from './nuaxess/add-invoice/add-invoice.component';
+import { InvoiceDashboardComponent } from './nuaxess/invoice-dashboard/invoice-dashboard.component';
+import { InvoiceListComponent } from './nuaxess/invoice-list/invoice-list.component';
+import { ApaPlanListComponent } from './nuaxess/apa-plan-list/apa-plan-list.component';
+import { ApaCompanyDashboardComponent } from './nuaxess/apa-company-dashboard/apa-company-dashboard.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -133,19 +139,27 @@ export const appRoutes: Route[] = [
             {path: 'edit-member/:id', component: EditMemberComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-user/:id', component: EditUserComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'edit-org/:id', component: EditQuoteComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'employee-lookup', component: EmployeeLookupComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-company', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-company/:id', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-company/:id/:id2', component: AddCompanyComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-list/:id', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-list', component: CompanyListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-dashboard/:id', component: CompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'apa-company-dashboard/:id', component: ApaCompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'apa-company-dashboard/:id/:id2', component: ApaCompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'employee-dashboard/:id', component: EmployeeDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'employee-dashboard/:id/:id2', component: EmployeeDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'company-dashboard/:id/:id2', component: CompanyDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-plan', component: AddPlanComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-invoice', component: AddInvoiceComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-invoice/:id', component: AddInvoiceComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'apa-plan-list', component: ApaPlanListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'plan-list', component: PlanListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'plan-dashboard/:id', component: PlanDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'invoice-dashboard/:id', component: InvoiceDashboardComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'add-quote/:id', component: AddQuoteComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'add-invoice/:id', component: AddInvoiceComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'quote-list/:id', component: QuoteListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'quote-list/:id/:id2', component: QuoteListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'quote-list', component: QuoteListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
@@ -163,6 +177,9 @@ export const appRoutes: Route[] = [
             {path: 'member-lookup', component: MemberLookupComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'guardian-lookup', component: GuardianLookupComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'enroll/:id', component: UserEnrollComponent, resolve: { data: EnrollResolver }, },
+            {path: 'invoice-list', component: InvoiceListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'invoice-list/:id', component: InvoiceListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
+            {path: 'invoice-list/:id/:id2', component: InvoiceListComponent, resolve: { menudata: MenuResolver, data: DataResolver, userdata: UserResolver }, },
             {path: 'enroll', component: UserEnrollComponent, resolve: { data: EnrollResolver }, }
         ]
     },

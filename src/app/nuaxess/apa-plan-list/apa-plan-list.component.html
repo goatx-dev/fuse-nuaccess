@@ -79,7 +79,7 @@
         <div class="flex-1 min-w-0">
             <div class="mt-2">
                 <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight leading-7 sm:leading-10 truncate">
-                    APA (Medical) Member List
+                    APA Plan Map
                 </h2>
             </div>
         </div>
@@ -89,70 +89,26 @@
         <div class="row">
             <div class="col-md-12">
                 <h1 style="font-size: 24px; font-weight: bold;">&nbsp; </h1>
-        <!-- Upload Grab #1 -->
-        <div *ngIf="uploading=='N'" class="row">
-            <div class="col-12">
-                <button class="btn btn-primary" (click)="showUpload()">Upload APA File</button>
-            </div>
-        </div>
-        <div *ngIf="uploading=='Y'"  class="card card-body">
-            <h2 style="font-size: 24px;"><b>Select File to Upload</b></h2>
-            <div class="row">
-                <div class="col-xl-4"> &nbsp; </div>            
-            </div>
-            <div class="row">
-                <div class="col-xl-4"> &nbsp; </div>            
-            </div>
-            <div class="mc">
-                <input [formControl]="file" (change)="fileChange(index,$event)" type="file" placeholder="File">
-                <br>
-                <button style="margin-top:20px" (click)="uploadFile()" mat-raised-button color="primary">
-                    Upload
-                </button>
-                <button style="margin-top:20px; margin-left:20px;" (click)="showUpload()" mat-raised-button color="default">
-                    Cancel
-                </button>
-            </div>
-            </div>
-            <!-- End Upload Grab #1 -->
             </div>
             <div class="col-md-12">
                 <div class="table-responsive">
-                    <div class="col-lg-6 py-2">
-                        Search: <input style="max-width:320px;" class="form-control" type="text" id="term" name="term" [(ngModel)]="term"> 
-                    </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Company</th>
-                                <th>DOB</th>
-                                <th>Dependent</th>
-                                <th>Plan</th>
-                                <th>Coverage Level</th>
-                                <th>Effective Date</th>
-                                <th>APA Id</th>
+                                <th style="width:130px;">Plan ID</th>
+                                <th style="width:230px;">Plan Name</th>
+                                <th>Note</th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let m of data.list | filter: term | paginate: { currentPage: p , itemsPerPage: 100}">
-                                <td>{{ m.id }}</td>
-                                <td>{{ m.last_name }}, {{ m.first_name }} {{ m.middle_name }}</td>
-                                <td>{{ m.company_name }}</td>
-                                <td>{{ m.dob }}</td>
-                                <td>{{ m.dependent }}</td>
-                                <td>{{ m.plan }}</td>
-                                <td>{{ m.coverage_level }}</td>
-                                <td>{{ m.eff_dt }}</td>
-                                <td>{{ m.apa_employee_id }}</td>
-                                <td><button *ngIf="m.dependent=='N'" [routerLink]="['/employee-dashboard',m.employee_id]" class="btn btn-primary">View</button></td>
+                            <tr *ngFor="let m of data.list">
+                                <td>{{ m.vba_code }}</td>
+                                <td>{{ m.plan_name }}</td>
+                                <td>{{ m.note }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <paging-controls (pageChange)="p = $event" [isItemsPerPage]="false"  
-                    class="my-pagination"></paging-controls>
                 </div>
             </div>
         </div>

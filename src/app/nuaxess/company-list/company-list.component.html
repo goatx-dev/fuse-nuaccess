@@ -125,7 +125,8 @@
                                 <td>{{ m.enrollment_count }}</td>
                                 <td>{{ m.has_accepted_quote }}</td>
                                 <td>{{ m.status }}</td>
-                                <td><button [routerLink]="['/company-dashboard',m.id]" class="btn btn-primary">View</button></td>
+                                <td><button *ngIf="data.id!='apa'" [routerLink]="['/company-dashboard',m.id]" class="btn btn-primary">View</button></td>
+                                <td><button *ngIf="data.id=='apa'" [routerLink]="['/apa-company-dashboard',m.id]" class="btn btn-danger">View</button></td>
                             </tr>
                         </tbody>
                     </table>

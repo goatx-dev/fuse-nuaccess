@@ -10,11 +10,11 @@ import { DataService } from 'app/data.service';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.scss']
+  selector: 'app-add-invoice',
+  templateUrl: './add-invoice.component.html',
+  styleUrls: ['./add-invoice.component.scss']
 })
-export class EditUserComponent implements OnInit {
+export class AddInvoiceComponent implements OnInit, OnDestroy {
   navigation: Navigation;
   isScreenSmall: boolean;
   term: any;
@@ -27,7 +27,6 @@ export class EditUserComponent implements OnInit {
     currentYear: any;
     email: any;
     user: any;
-    error: any;
 
     /**
      * Constructor
@@ -64,7 +63,7 @@ export class EditUserComponent implements OnInit {
                 // Check if the screen is small
                 this.isScreenSmall = !matchingAliases.includes('md');
             });
-              
+
     }
 
     ngOnDestroy(): void
@@ -124,9 +123,9 @@ export class EditUserComponent implements OnInit {
 
   
     postForm() {
-        this._dataService.postForm("post-edit-user", this.data).subscribe((data:any)=>{
+        this._dataService.postForm("post-add-invoice", this.data).subscribe((data:any)=>{
           if (data.error_code=="0") {
-            this._router.navigate(['/user-dashboard',data.id])
+            this._router.navigate(['/invoice-dashboard',data.id])
           } else {     
 //            this.error=data.error_message
           }

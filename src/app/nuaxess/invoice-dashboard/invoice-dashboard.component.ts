@@ -13,11 +13,11 @@ import { HttpClient } from '@angular/common/http';
 import { NgLocalization } from '@angular/common';
 
 @Component({
-  selector: 'app-company-dashboard',
-  templateUrl: './company-dashboard.component.html',
-  styleUrls: ['./company-dashboard.component.scss']
+  selector: 'app-invoice-dashboard',
+  templateUrl: './invoice-dashboard.component.html',
+  styleUrls: ['./invoice-dashboard.component.scss']
 })
-export class CompanyDashboardComponent implements OnInit, OnDestroy {
+export class InvoiceDashboardComponent implements OnInit, OnDestroy {
   navigation: Navigation;
   isScreenSmall: boolean;
   term: any;
@@ -38,8 +38,6 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
     dob: any;
     editQQ: any;
     uploading: any;
-    dsc: any;
-    doc_title: any;
 
     /**
      * Constructor
@@ -57,9 +55,7 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
   ) { }
 
     ngOnInit(): void
-    {   
-      this.dsc='';
-      this.doc_title="";   
+    {      
       this.editQQ='N';
       this.uploading='N';
       this._activatedRoute.data.subscribe(({ 
@@ -151,31 +147,19 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
         return this.formFieldHelpers.join(' ');
     }
 
-    addEmployee() {
+    addPlan() {
       if (this.adding=='N') {
         this.adding='Y';
-        this.data.employeeData['id']="";
-        this.data.employeeData['first_name']="";
-        this.data.employeeData['middle_name']="";
-        this.data.employeeData['last_name']="";
-        this.data.employeeData['suffix']="";
-        this.data.employeeData['email']="";
-        this.data.employeeData['phone_mobile']="";
-        this.data.employeeData['social_security_number']="";
-        this.data.employeeData['date_of_birth']="";
-        this.data.employeeData['gender']="";
+        this.data.formData['id']="";
+        this.data.formData['employee_name']="";
+        this.data.formData['date_of_birth']="";
+        this.data.formData['gender']="";
       } else {
         this.adding='N';
-        this.data.employeeData['id']="";
-        this.data.employeeData['first_name']="";
-        this.data.employeeData['middle_name']="";
-        this.data.employeeData['last_name']="";
-        this.data.employeeData['suffix']="";
-        this.data.employeeData['email']="";
-        this.data.employeeData['phone_mobile']="";
-        this.data.employeeData['social_security_number']="";
-        this.data.employeeData['date_of_birth']="";
-        this.data.employeeData['gender']="";
+        this.data.formData['id']="";
+        this.data.formData['employee_name']="";
+        this.data.formData['date_of_birth']="";
+        this.data.formData['gender']="";
       }
     }
 
@@ -263,32 +247,8 @@ export class CompanyDashboardComponent implements OnInit, OnDestroy {
       });
     }
 
-  editE(id: any,first_name: any, middle_name: any, last_name: any, suffix: any, email: any, phone_mobile: any, date_of_birth: any, social_security_number: any, gender: any) {
-    if (this.adding=='N') {
-      this.adding='Y';
-    this.data.employeeData['id']=id;
-    this.data.employeeData['first_name']=first_name;
-    this.data.employeeData['middle_name']=middle_name;
-    this.data.employeeData['last_name']=last_name;
-    this.data.employeeData['suffix']=suffix;
-    this.data.employeeData['email']=email;
-    this.data.employeeData['phone_mobile']=phone_mobile;
-    this.data.employeeData['social_security_number']=social_security_number;
-    this.data.employeeData['date_of_birth']=date_of_birth;
-    this.data.employeeData['gender']=gender;    
-    } else {
-    this.adding='N';
-    this.data.employeeData['id']="";
-    this.data.employeeData['first_name']="";
-    this.data.employeeData['middle_name']="";
-    this.data.employeeData['last_name']="";
-    this.data.employeeData['suffix']="";
-    this.data.employeeData['email']="";
-    this.data.employeeData['phone_mobile']="";
-    this.data.employeeData['social_security_number']="";
-    this.data.employeeData['date_of_birth']="";
-    this.data.employeeData['gender']="";
-    }  
+  editE(id: any) {
+       
   }
 
 editQuote() {
@@ -329,11 +289,12 @@ editQuote() {
             if((file.size/1048576)<=8)
             {
               let formData = new FormData();
+              let info={id:2,name:'joetest'}
               formData.append('file', file, file.name);
               formData.append('company_id',this.data.id);
               formData.append('user_id',this.data.user.id);
-              formData.append('dsc',this.dsc);
-              formData.append('doc_title',this.doc_title);
+              formData.append('dsc','This is my File');
+//              formData.append('info',JSON.stringify(info))
               this.file_data=formData
               
             }else{
@@ -348,20 +309,14 @@ editQuote() {
       
       uploadFile()
         {
-          console.log(this.file_data);
           this.http.post(this.ip+'upload.php',this.file_data)
           .subscribe(res => {
-            location.reload()
-            console.log(res.toString)
+          //send success response
+          console.log(res.toString)
           }, (err) => {
           //send error response
-          alert('error occured')
+          console.log(err)
         });
         }
-
-        showDoc(id: any) {
-          window.open('https://myna-docs.com/?id='+id,'_new')
-        }
-
   }
   

@@ -107,8 +107,7 @@
         </div>
         <div class="col-xl-7">
             <div style="margin-top: 10px !important;">
-                <button style="margin-bottom: 20px" *ngIf="data.quotes.length==0"  class="btn btn-primary" [routerLink]="['/add-quote-request',data.id]">Start New Quote</button>
-                <button *ngIf="data.user.role=='sadmin'" style="margin-left:20px; margin-bottom: 20px;" [routerLink]="['/add-invoice',data.id]" class="btn btn-primary">Create Invoice</button>
+                 <button *ngIf="data.user.role=='sadmin'" style="margin-left:20px; margin-bottom: 20px;" [routerLink]="['/add-invoice',data.id]" class="btn btn-primary">Create Invoice</button>
             </div>
         </div>
     </div>
@@ -389,140 +388,6 @@
         </div> 
         </div>  
     </div>
-    <div class="col-md-12 col-xl-6"  *ngIf="data.contribution_levels.length>0">
-    <div style="margin-top:20px;" class="card card-body"  >
-        <h2 style="font-size: 24px;"><b>Contribution Levels</b></h2>
-        <div class="table-responsive">
-        <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Class</th>
-                <th>Level</th>
-                <th>Type</th>
-                <th>Value</th>
-                <th>Custom</th>
-                <th></th>
-            </tr>        
-        </thead>
-        <tbody>
-            <tr *ngFor="let m of data.contribution_levels">
-                <td>
-                    {{ m.class_level }}
-                </td>
-                <td>
-                    {{ m.coverage_level }}
-                </td>
-                <td>
-                    {{ m.type }}
-                </td>
-                <td>
-                    {{ m.value }}
-                </td>
-                <td>
-                    {{ m.is_custom }}
-                </td>
-                <th>
-                    <button (click)="editLevel(m.id,m.class_level,m.applicable_plan,m.coverage_level,m.value,m.type)" class="btn btn-primary">Edit</button>
-                </th>
-            </tr>
-                    </tbody>
-                </table>
-    </div> <!-- TABLE RESPONSIVE -->
-    <div *ngIf="addcont=='N'" class="row">
-        <div class="col-12">
-            <button class="btn btn-primary" (click)="addLevel()">Add Contribution Level</button>
-        </div>
-    </div> <!-- BUTTON ROW -->
-    </div> <!-- CARD BODY -->
-<div class="card card-body" *ngIf="addcont=='Y'">
-    <div class="flex-auto p-12 sm:p-10">
-        <div class="max-w-12xl">
-                <div class="flex flex-col gt-xs:flex-row">
-                    <h2 style="font-size: 24px;"><b>Add / Edit Contribution Level</b></h2>&nbsp;
-                <mat-form-field
-                    [ngClass]="formFieldHelpers"
-                    class="flex-auto gt-xs:pl-3">
-                    <mat-label>Class Level</mat-label>
-                    <input matInput id="class_level" name="class_level" [(ngModel)]="data.formData2['class_level']">
-                    <mat-icon
-                        class="icon-size-5"
-                        matSuffix
-                        [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                </mat-form-field> 
-               <mat-form-field 
-                [ngClass]="formFieldHelpers"
-                class="flex-auto gt-xs:pr-3">
-                <mat-label>Applicable Plan</mat-label>
-                <mat-select  id="applicable_plan" name="applicable_plan" [(ngModel)]="data.formData2['applicable_plan']">
-                    <mat-option value="all">All Plans</mat-option>
-                    <mat-option *ngFor="let m of data.select" value="{{ m.name }}">{{ m.name }}</mat-option>
-                </mat-select>
-                <mat-icon
-                    class="icon-size-5"
-                    matPrefix
-                    [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-            </mat-form-field>   
-            <mat-form-field 
-            [ngClass]="formFieldHelpers"
-            class="flex-auto gt-xs:pr-3">
-            <mat-label>Coverage Level</mat-label>
-            <mat-select  id="coverage_level" name="coverage_level" [(ngModel)]="data.formData2['coverage_level']">
-                <mat-option value="all">All Levels</mat-option>
-                <mat-option value="employee">Employee</mat-option>
-                <mat-option value="spouse">Employee & Spouse</mat-option>
-                <mat-option value="children">Employee & Children</mat-option>
-                <mat-option value="family">Family</mat-option>
-            </mat-select>
-            <mat-icon
-                class="icon-size-5"
-                matPrefix
-                [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-        </mat-form-field>   
-                <div class="flex flex-col gt-xs:flex-row">
-                <mat-form-field 
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pr-3">
-                        <mat-label>Type</mat-label>
-                        <mat-select  id="type" name="type" [(ngModel)]="data.formData2['type']">
-                            <mat-option value="percentage">Percentage</mat-option>
-                            <mat-option value="flat_rate">Flat Rate</mat-option>
-                        </mat-select>
-                        <mat-icon
-                            class="icon-size-5"
-                            matPrefix
-                            [svgIcon]="'heroicons_solid:location-marker'"></mat-icon>
-                    </mat-form-field> 
-                    <mat-form-field
-                        [ngClass]="formFieldHelpers"
-                        class="flex-auto gt-xs:pr-3">
-                        <mat-label>Value</mat-label>
-                        <input matInput id="value" name="value" [(ngModel)]="data.formData2['value']">
-                        <mat-icon
-                            class="icon-size-5"
-                            matSuffix
-                            [svgIcon]="'heroicons_solid:user-circle'"></mat-icon>
-                    </mat-form-field>   
-                </div>
-                <div *ngIf="error!=''" class="flex flex-col gt-xs:flex-row">
-                    <span style="color: red;">{{ error }}</span>
-                </div>
-                <div class="flex items-center justify-end border-t -mx-8 mt-8 px-8 py-5 bg-gray-50 dark:bg-gray-700">
-                    <button (click)="addLevel()" mat-button>
-                        Cancel
-                    </button>
-                    <button
-                        class="px-6 ml-3"
-                        mat-flat-button
-                        [color]="'primary'" (click)="postForm2()">
-                        Save
-                    </button>
-                </div>
-        </div>
-
-    </div>
-</div>  <!-- ADD CONT LEVEL FORM CONTAINER -->
-        </div> <!-- ADD CONTRIBUTTION LEVEL -->
-        </div> <!-- CONTRIBUTION LEVELS-->
     </div> <!-- ROW -->
     </div>
 <div class="col-xl-3">
@@ -842,16 +707,6 @@
                 <button  *ngIf="adding=='N'" class="btn btn-primary" (click)="addEmployee()">Add Employee</button>
             </div>
             </div>
-
-
-
-
 </div>   <!-- EMPLOYEE ROW -->
-
-
 </div>   <!-- CONTAINER -->
-
-
-
-
 </div>

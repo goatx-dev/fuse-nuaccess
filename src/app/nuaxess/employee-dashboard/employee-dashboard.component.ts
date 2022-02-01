@@ -7,9 +7,15 @@ import { FuseNavigationService, FuseVerticalNavigationComponent } from '@fuse/co
 import { Navigation } from 'app/core/navigation/navigation.types';
 import { NavigationService } from 'app/core/navigation/navigation.service';
 import { DataService } from 'app/data.service';
+//===================================================
+// UPLOAD GRAB #1
+//===================================================
 import { FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+//===================================================
+// END UPLOAD GRAB #1
+//===================================================
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -24,8 +30,6 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
   formFieldHelpers: string[] = [''];
   adding: any;
   qedit: any;
-  dsc: any;
-  doc_title: any;
 
     data: any;
     selectedProject: string = 'ACME Corp. Backend App';
@@ -35,8 +39,16 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
     user: any;
     editing: any;
     addF: any;
+//===================================================
+// UPLOAD GRAB #2
+//===================================================
     uploading: any;
     index: any;
+    dsc: any;
+    doc_title: any;
+//===================================================
+// END UPLOAD GRAB #2
+//===================================================
 
     /**
      * Constructor
@@ -49,8 +61,15 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
       private _fuseMediaWatcherService: FuseMediaWatcherService,
       private _fuseNavigationService: FuseNavigationService,
       private _dataService: DataService,
+//===================================================
+// UPLOAD GRAB #3
+//===================================================
       private _formBuilder: FormBuilder,
       public http: HttpClient  // used by upload
+//===================================================
+// END UPLOAD GRAB #3
+//===================================================
+
   ) { }
 
   
@@ -84,9 +103,15 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void
     {      
+     //===================================================
+    // UPLOAD GRAB #4
+    //===================================================
       this.dsc='';    
       this.doc_title='';        
       this.uploading='N';
+     //===================================================
+    // END UPLOAD GRAB #4
+    //===================================================
             this._activatedRoute.data.subscribe(({ 
               data, menudata, userdata })=> { 
                 this.data=data;
@@ -149,12 +174,6 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
                  el.setAttribute('fill', `url(${currentURL}${attrVal.slice(attrVal.indexOf('#'))}`);
              });
     }
-
-    /**
-     * Prepare the chart data from the data
-     *
-     * @private
-     */
 
     toggleNavigation(name: string): void
     {
@@ -222,6 +241,10 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
       // Upload Form
       //------------------------------
 
+    //===================================================
+    // UPLOAD GRAB #5
+    //===================================================
+
       file=new FormControl('')
       file_data:any=''
 
@@ -251,7 +274,7 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
         }
     
       }
-    
+
       ip="https://myna-docs.com/api/"
       
       uploadFile()
@@ -278,5 +301,8 @@ export class EmployeeDashboardComponent implements OnInit, OnDestroy {
             this.uploading="Y";
           }
         }
+//===================================================
+// END UPLOAD GRAB #5
+//===================================================
   }
   

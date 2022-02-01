@@ -103,6 +103,12 @@ import { ForcedLogoutComponent } from './nuaxess/forced-logout/forced-logout.com
 import { NewSigninComponent } from './nuaxess/new-signin/new-signin.component';
 import { MemberLookupComponent } from './nuaxess/member-lookup/member-lookup.component';
 import { GuardianLookupComponent } from './nuaxess/guardian-lookup/guardian-lookup.component';
+import { EmployeeLookupComponent } from './nuaxess/employee-lookup/employee-lookup.component';
+import { AddInvoiceComponent } from './nuaxess/add-invoice/add-invoice.component';
+import { InvoiceDashboardComponent } from './nuaxess/invoice-dashboard/invoice-dashboard.component';
+import { InvoiceListComponent } from './nuaxess/invoice-list/invoice-list.component';
+import { ApaPlanListComponent } from './nuaxess/apa-plan-list/apa-plan-list.component';
+import { ApaCompanyDashboardComponent } from './nuaxess/apa-company-dashboard/apa-company-dashboard.component';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy       : PreloadAllModules,
@@ -162,7 +168,13 @@ const routerConfig: ExtraOptions = {
         ForcedLogoutComponent,
         NewSigninComponent,
         MemberLookupComponent,
-        GuardianLookupComponent
+        GuardianLookupComponent,
+        EmployeeLookupComponent,
+        AddInvoiceComponent,
+        InvoiceDashboardComponent,
+        InvoiceListComponent,
+        ApaPlanListComponent,
+        ApaCompanyDashboardComponent
     ],
     imports     : [
         BrowserModule,

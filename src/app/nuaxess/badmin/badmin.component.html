@@ -80,7 +80,7 @@
                 {{ data.org_name }}
             </div>
             <div class="max-w-2xl mt-6 sm:text-2xl text-center tracking-tight text-secondary">
-                {{ data.email }} - {{ data.phone_mobile }}
+                {{ data.user.email }} - {{ data.user.role }}
             </div>
         </div>
     </div>
@@ -131,7 +131,7 @@
             <div class="col-md-12 col-xl-10">
                 <div class="card card-body" style="margin-top: 20px;">
                     <div class="table-responsive">
-                        <h2 class="h2" style="font-size: 24px;">Prospects / Companies</h2>
+                        <h2 class="h2" style="font-size: 24px;">Prospects / Companies <button style="margin-left: 20px;" class="btn btn-primary" [routerLink]="['/add-company',data.id]">Add Prospect</button></h2>
                         <table class="table table-responsive table-striped">
                         <thead>
                         <tr>
@@ -160,7 +160,7 @@
                             </tr>
                         </tbody>
                         </table>
-                        <button class="btn btn-primary" (click)="addCompany()">Add Company / Prospect</button>
+<!--                        <button class="btn btn-primary" (click)="addCompany()">Add Company / Prospect</button> -->
                     </div> <!-- table-responsive -->
                 </div> <!-- card -->
                 <div class="row">
@@ -342,55 +342,31 @@
             <div class="col-xl-2">
 
             </div>
-            <div class="col-xl-5">
-                <div class="card card-body" style="margin-top:20px;">
-                    <div class="table-responsive">
-                        <h2 class="h2" style="font-size: 24px;">Users</h2>
-                        <table class="table table-responsive table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Full Name</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let m of data.users |  paginate: { currentPage: p , itemsPerPage: 25}">
-                                    <td>{{ m.full_name }}</td>
-                                    <td>{{ m.role }}</td>
-                                    <td>{{ m.status }}</td>
-                                    <th><button [routerLink]="['/user-dashboard',m.id]" class="btn btn-primary">View/Edit</button></th>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <button  [routerLink]="['/add-user']" class="btn btn-primary" (click)="addEmployee()">Add User</button>
-                    </div>
-                </div> <!-- card -->
-            </div> <!-- col-xl-5 -->
-            <div class="col-xl-5">
-                <div class="card card-body" style="margin-top:20px;">
+            <div class="col-xl-10">
+                <div class="card card-body" style="margin-top:20px;" *ngIf="data.user['role']=='badmin'">
                     <div class="table-responsive">
                         <h2 class="h2" style="font-size: 24px;">Brokers</h2>
                             <table class="table table-responsive table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Full Name</th>
+                                        <th>Last Name</th>
+                                        <th>First Name</th>
                                         <th>Email</th>
                                         <th>Status</th>
-                                        <th></th>
+<!--                                       <th></th> -->
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let m of data.users |  paginate: { currentPage: p , itemsPerPage: 25}">
-                                        <td>{{ m.full_name }}</td>
+                                    <tr *ngFor="let m of data.brokers |  paginate: { currentPage: p , itemsPerPage: 25}">
+                                        <td>{{ m.last_name }}</td>
+                                        <td>{{ m.first_name }}</td>
                                         <td>{{ m.email }}</td>
                                         <td>{{ m.status }}</td>
-                                        <th><button [routerLink]="['/user-dashboard',m.id]" class="btn btn-primary">View/Edit</button></th>
+<!--                                        <th><button [routerLink]="['/user-dashboard',m.id]" class="btn btn-primary">View/Edit</button></th> -->
                                     </tr>
                                 </tbody>
                             </table>
-                            <button  [routerLink]="['/add-user']" class="btn btn-primary" (click)="addEmployee()">Add User</button>
+<!--                           <button  [routerLink]="['/add-user']" class="btn btn-primary" (click)="addEmployee()">Add User</button> -->
                     </div>  <!-- table-responsive -->
                 </div> <!-- card -->
             </div> <!-- col-xl-5 -->

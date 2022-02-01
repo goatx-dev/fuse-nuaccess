@@ -122,6 +122,7 @@
                 <div class="row">
                     <div class="col-12">
                         <button class="btn btn-primary" (click)="toggleEdit()">Edit Employee</button>
+                        <button *ngIf="data.company.id!='0'&&data.company.id!=''" style="margin-left: 20px;" class="btn btn-warning" [routerLink]="['/company-dashboard',data.formData.company_id]">View Company</button>
                     </div>
                 </div>
                 <div class="row">
@@ -138,10 +139,26 @@
             <th>&nbsp;</th>
             <td>&nbsp;</td>
         </tr>
+        <tr style="background-color:lightsteelblue">
+            <th>NuAxess Company Name:</th>
+            <td>{{ data.company.company_name }}</td>
+        </tr>
+        <tr style="background-color: linen;">
+            <th>APA Company Name:</th>
+            <td>{{ data.census.company_name }}</td>
+        </tr> 
+        <tr style="background-color: linen;">
+            <th>Alt APA Company:</th>
+            <td>{{ data.census.alt_company_name }}</td>
+        </tr>    
+        <tr>
+            <th>Employee Status:</th>
+            <td>{{ data.employee_status }}</td>
+        </tr>        
         <tr>
             <th>ID:</th>
             <td>{{ data.id }}</td>
-        </tr>
+        </tr>     
         <tr>
             <th>First Name:</th>
             <td>
@@ -695,6 +712,7 @@
         </tbody>
     </div>
     </div>
+        <!-- Upload Grab #1 -->
     <div *ngIf="uploading=='N'" class="row">
         <div class="col-12">
             <button class="btn btn-primary" (click)="showUpload()">Upload Documents</button>
@@ -735,7 +753,7 @@
             </button>
         </div>
         </div>
-
+        <!-- End Upload Grab #1 -->
 </div>
 <div class="card card-body"  style="margin-top:20px;">
     <div class="table-responsive">
