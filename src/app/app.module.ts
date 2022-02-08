@@ -2,14 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ExtraOptions, PreloadAllModules, RouterModule } from '@angular/router';
-import { JitCompiler } from '@angular/compiler';
 import { MarkdownModule } from 'ngx-markdown';
 import { FuseModule } from '@fuse';
 import { FuseConfigModule } from '@fuse/services/config';
-import { FuseMockApiModule } from '@fuse/lib/mock-api';
 import { CoreModule } from 'app/core/core.module';
 import { appConfig } from 'app/core/config/app.config';
-import { mockApiServices } from 'app/mock-api';
 import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
@@ -28,7 +25,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { TranslocoModule } from '@ngneat/transloco';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { FuseNavigationModule } from '@fuse/components/navigation';
 import { FuseLoadingBarModule } from '@fuse/components/loading-bar';
@@ -41,7 +37,6 @@ import { SearchModule } from 'app/layout/common/search/search.module';
 import { ShortcutsModule } from 'app/layout/common/shortcuts/shortcuts.module';
 import { UserModule } from 'app/layout/common/user/user.module';
 import { SharedModule } from 'app/shared/shared.module';
-//import { ClassyLayoutComponent } from './layout/layouts/vertical/classy/classy.component';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { AdminDashboardComponent } from './nuaxess/admin-dashboard/admin-dashboard.component';
@@ -182,14 +177,16 @@ const routerConfig: ExtraOptions = {
         CoreModule,
         FuseModule,
         FuseConfigModule.forRoot(appConfig),
-        FuseMockApiModule.forRoot(mockApiServices),
+  //      FuseMockApiModule.forRoot(mockApiServices),
         FuseFullscreenModule,
+        FuseHighlightModule,
         FuseLoadingBarModule,
         FuseNavigationModule,
         FuseCardModule,
         LayoutModule,
         LanguagesModule,
         MatButtonModule,
+        MatChipsModule,
         MatFormFieldModule,
         MatButtonToggleModule,
         MatDividerModule,
@@ -197,6 +194,7 @@ const routerConfig: ExtraOptions = {
         MatMenuModule,
         MatInputModule,
         MatProgressBarModule,
+        MatDatepickerModule,
         MatRippleModule,
         MatSidenavModule,
         MatSortModule,
@@ -204,6 +202,7 @@ const routerConfig: ExtraOptions = {
         MatTableModule,
         MatTabsModule,
         MessagesModule,
+        MatMomentDateModule,
         NgxTablePaginationModule,
         Ng2SearchPipeModule,
         NgApexchartsModule,
